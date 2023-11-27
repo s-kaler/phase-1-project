@@ -18,7 +18,8 @@ const init = () => {
         }
         else{
             let fetchURL = buildQuizURL(qNum, difficulty, category)
-            buildDB(fetchURL);
+            console.log(fetchURL);
+            handleFetch(fetchURL);
             form.reset();
         }
     });
@@ -27,8 +28,6 @@ const init = () => {
 }
 
 function buildQuizURL(qNum, difficulty, category) {
-    // if the API is rate limited, it will throw a response code of 5
-    // if not and the quiz is generated, then "response_code" will be 0
     //example db url 
     //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
     let qNumURL = `amount=${qNum}`;
@@ -47,15 +46,57 @@ function buildQuizURL(qNum, difficulty, category) {
     return newUrl;
 }
 
-function buildDB(fetchURL){
-
+function handleFetch(fetchURL){
+    // if the API is rate limited, it will throw a response code of 5
+    // if not and the quiz is generated, then "response_code" will be 0
+    let qArr = [];
+    fetch(fetchURL)
+    .then(res => res.json())
+    .then(data => {    
+    //console.log(data);
+    console.log(data['response_code']);
+    if(data['response_code'] === '5'){
+        alert('Rate limited, please try again');
+    }
+    else if(data['response_code'] === 0){
+        console.log(data);
+        let fetchArr = data.results;
+        buildDB(fetchArr);
+    }
+  }) 
 }
 
-/*
-const questionObj(){
-
+const questionObj = {
+    category: '',
+    difficulty: '',
+    question: '',
+    answers: [],
+    correctAnswer: ''
 }
+
+/* example fetch request question object
+   we will take this data and convert it to an object that is ready for our code
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "History",
+      "question": "When did the French Revolution begin?",
+      "correct_answer": "1789",
+      "incorrect_answers": [
+        "1823",
+        "1756",
+        "1799"
+      ]
+    }
 */
+
+
+function buildDB(fetchArr){
+    let qArr = [];
+    for(let i = 0; i < fetchArr.length; i++){
+        let q = new questionObj;
+    }
+}
+
 
 
 document.addEventListener("DOMContentLoaded", init);
