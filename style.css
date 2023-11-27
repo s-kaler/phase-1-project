@@ -1,0 +1,19 @@
+#site-header {
+    display: flex;
+    justify-content: center;
+    background: rgb(161, 204, 218);
+    height: 7rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  #generate-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  body {
+    margin: 0;
+    font-family: roboto;
+    background-color: rgb(213, 223, 226);
+  }
