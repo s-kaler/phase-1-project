@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" href='style.css' />
-  <script src="src/index.js"></script>
-  <title></title>
+  <script src="index.js"></script>
+  <title>Trivia Generator</title>
 </head>
 <body>
     <div id="site-header">
@@ -22,14 +22,14 @@
                 class="input-text"
             />
             <label for="difficulty">Difficulty: </label>
-            <select type="dropdown" id="difficulty" name="difficulty">
+            <select type="dropdown" name="difficulty" id="difficulty">
                 <option value="any">Any</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
-            <label for="trivia_category">Category: </label>
-            <select name="trivia_category" class="form-control">
+            <label for="trivia-category">Category: </label>
+            <select name="trivia-category" id="trivia-category" class="form-control">
                 <option value="any">Any Category</option>
                 <option value="9">General Knowledge</option>
                 <option value="10">Entertainment: Books</option>
@@ -57,7 +57,7 @@
                 <option value="32">Entertainment: Cartoon &amp; Animations</option>
             </select>
             <br>
-            <button id="submit-quiz-button">Generate!</button>
+            <input type="submit" value="Generate!">
         </form>
     </div>
 </body>
