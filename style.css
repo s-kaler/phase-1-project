@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    font-family: roboto;
+    background-color: rgb(213, 223, 226);
+  }
+
 #site-header {
     display: flex;
     justify-content: center;
@@ -10,10 +16,5 @@
   #generate-container {
     display: flex;
     justify-content: center;
-  }
-
-  body {
-    margin: 0;
-    font-family: roboto;
-    background-color: rgb(213, 223, 226);
+    text-align: center;
   }

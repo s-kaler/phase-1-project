@@ -1,3 +1,5 @@
+let quizGenerated = false;
+
 const init = () => {
     let dbURL = ""
 }
