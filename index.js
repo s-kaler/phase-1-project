@@ -66,12 +66,15 @@ function handleFetch(fetchURL){
   }) 
 }
 
-const questionObj = {
-    category: '',
-    difficulty: '',
-    question: '',
-    answers: [],
-    correctAnswer: ''
+class questionObj {
+    constructor(category, difficulty, question, answers, correctAnswer){
+        this.category = category;
+        this.difficulty = difficulty;
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+    
 }
 
 /* example fetch request question object
@@ -88,15 +91,38 @@ const questionObj = {
       ]
     }
 */
-
+//creating a function to shuffle the answers so they they will be shown in a random order
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }  
+    return array;
+  }
 
 function buildDB(fetchArr){
     let qArr = [];
     for(let i = 0; i < fetchArr.length; i++){
-        let q = new questionObj;
+        let q = buildQuestion(fetchArr[i]);
+        qArr.push(q);
+        console.log(q);
     }
+    
+    //return qArr;
 }
 
-
+function buildQuestion(q) {
+    let answerArr = [];
+    answerArr.push(q['correct_answer']);
+    for(let i = 0; i < 3; i++){
+        answerArr.push(q['incorrect_answers'][i]);
+    }
+    answerArr = shuffle(answerArr);
+    let newQ = new questionObj(q.category, q.difficulty, q.question, answerArr, q['correct_answer'])
+    return newQ;
+}
 
 document.addEventListener("DOMContentLoaded", init);
