@@ -18,14 +18,39 @@ const init = () => {
         }
         else{
             let fetchURL = buildQuizURL(qNum, difficulty, category)
-            console.log(fetchURL);
-            handleFetch(fetchURL);
+            //console.log(fetchURL);
+            clearDB();
+            setTimeout(handleFetch(fetchURL), 1000);
             form.reset();
         }
     });
     
 
 }
+
+// We will be clearing local db.json because we need to throw away possible old question data
+// and fill with new and variable amounts of questions
+async function clearDB(){
+    fetch(`http://localhost:3000/questions`)
+    .then(res => res.json())
+    .then(data => {
+        //console.log(data.length); 
+        for(let i = 0; i < data.length; i++){
+            //console.log('deleted');
+            //console.log(data[i].id)
+            fetch(`http://localhost:3000/questions/${data[i].id}`, {
+            method: 'DELETE',
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "plication/json"
+            }
+            })
+            .catch(error => {console.log(error)})
+        }
+    })
+}
+
 
 function buildQuizURL(qNum, difficulty, category) {
     //example db url 
@@ -54,12 +79,12 @@ function handleFetch(fetchURL){
     .then(res => res.json())
     .then(data => {    
     //console.log(data);
-    console.log(data['response_code']);
+    //console.log(data['response_code']);
     if(data['response_code'] === '5'){
         alert('Rate limited, please try again');
     }
     else if(data['response_code'] === 0){
-        console.log(data);
+        //console.log(data);
         let fetchArr = data.results;
         buildDB(fetchArr);
     }
@@ -109,6 +134,21 @@ function buildDB(fetchArr){
         let q = buildQuestion(fetchArr[i]);
         qArr.push(q);
         console.log(q);
+        fetch(`http://localhost:3000/questions/`, {
+            method: 'POST',
+            headers:
+            {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+            },
+            body: JSON.stringify({
+            "category": q.category,
+            "difficulty": q.difficulty,
+            "question": q.question,
+            "answers": q.answers,
+            "correct_answer": q.correctAnswer
+            })  
+        })
     }
     
     //return qArr;

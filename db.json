@@ -1,0 +1,134 @@
+{
+  "questions": [
+    {
+      "category": "Entertainment: Film",
+      "difficulty": "medium",
+      "question": "What film did James Cameron&#039;s Avatar dethrone as the highest-grossing film ever?",
+      "answers": [
+        "Gone with the Wind",
+        "Titanic",
+        "Jaws",
+        "Star Wars"
+      ],
+      "correct_answer": "Titanic",
+      "id": 11
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "easy",
+      "question": "Who is the leader of Team Mystic in Pok&eacute;mon Go?",
+      "answers": [
+        "Blanche",
+        "Candela",
+        "Spark",
+        "Willow"
+      ],
+      "correct_answer": "Blanche",
+      "id": 12
+    },
+    {
+      "category": "Entertainment: Television",
+      "difficulty": "medium",
+      "question": "In the original Doctor Who series (1963), fourth doctor Tom Baker&#039;s scarf was how long?",
+      "answers": [
+        "2 Meters",
+        "10 Meters",
+        "7 Meters",
+        "5 Meters"
+      ],
+      "correct_answer": "7 Meters",
+      "id": 13
+    },
+    {
+      "category": "Entertainment: Music",
+      "difficulty": "medium",
+      "question": "Who had hits in the 70s with the songs &quot;Lonely Boy&quot; and &quot;Never Let Her Slip Away&quot;?",
+      "answers": [
+        "Leo Sayer",
+        "Elton John",
+        "Andrew Gold",
+        "Barry White "
+      ],
+      "correct_answer": "Andrew Gold",
+      "id": 14
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "hard",
+      "question": "Which one of these characters is from &quot;Legendz : Tale of the Dragon Kings&quot;?",
+      "answers": [
+        "Jack",
+        "Axia",
+        "Drum",
+        "Shiron"
+      ],
+      "correct_answer": "Shiron",
+      "id": 15
+    },
+    {
+      "category": "Geography",
+      "difficulty": "medium",
+      "question": "How many sovereign states are members of the United Nations?",
+      "answers": [
+        "178",
+        "195",
+        "201",
+        "153"
+      ],
+      "correct_answer": "195",
+      "id": 16
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "hard",
+      "question": "In the Team Fortress 2 canon, what did Shakespearicles NOT invent?",
+      "answers": [
+        "Stairs",
+        "Rocket Launcher",
+        "Two-Story Building",
+        "Stage Play"
+      ],
+      "correct_answer": "Stairs",
+      "id": 17
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "hard",
+      "question": "In the game Danganronpa: Happy Trigger Havoc, the character Aoi Asahina&#039;s ultimate ability is what?",
+      "answers": [
+        "Ultimate Detective",
+        "Ultimate Dancer",
+        "Ultimate Swimmer",
+        "Ultimate Gambler"
+      ],
+      "correct_answer": "Ultimate Swimmer",
+      "id": 18
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "In the Half-Life franchise, what is the real name of the &quot;gravity gun&quot;?",
+      "answers": [
+        "Universal Gravity Manipulation Device",
+        "Isaac Newton&#039;s Theory Disprover",
+        "Quantum Energy Displacement Modifier",
+        "Zero-Point Energy Field Manipulator"
+      ],
+      "correct_answer": "Zero-Point Energy Field Manipulator",
+      "id": 19
+    },
+    {
+      "category": "Entertainment: Music",
+      "difficulty": "easy",
+      "question": "Which song on Daft Punk&#039;s &quot;Random Access Memories&quot; features Pharrell Williams?",
+      "answers": [
+        "Instant Crush",
+        "Get Lucky",
+        "Doin&#039; It Right",
+        "The Game of Love"
+      ],
+      "correct_answer": "Get Lucky",
+      "id": 20
+    }
+  ]
+}
