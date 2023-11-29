@@ -20,12 +20,32 @@ const init = () => {
             let fetchURL = buildQuizURL(qNum, difficulty, category)
             //console.log(fetchURL);
             setTimeout(clearDB(), 1000);
-            handleFetch(fetchURL)
+            setTimeout(handleFetch(fetchURL), 1000);
+            
             form.reset();
         }
     });
     
 
+}
+
+function buildQuizURL(qNum, difficulty, category) {
+    //example db url 
+    //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
+    let qNumURL = `amount=${qNum}`;
+    let diffURL = '';
+    if(difficulty !== 'any'){
+        diffURL = `&difficulty=${difficulty}`;
+    }
+    let catURL = ''
+    if(category !== 'any'){
+        catURL = `&category=${category}`
+    }
+    //final db url will include the amount, difficulty, category, and will be multiple choice by default
+    //if difficulty or category are not chosen, they will be empty in the url
+    //this is what we will use in our fetch
+    let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
+    return newUrl;
 }
 
 // We will be clearing local db.json because we need to throw away possible old question data
@@ -35,6 +55,8 @@ function clearDB(){
     fetch(`http://localhost:3000/questions`)
     .then(res => res.json())
     .then(data => {
+        // Building an array of ids currently stored in the local db.json server
+        // these are ids that will be set to delete so that we can build add new questions
         //console.log(data.length); 
         for(let i = 0; i < data.length; i++)
         {
@@ -58,30 +80,9 @@ function clearDB(){
     })
 }
 
-
-function buildQuizURL(qNum, difficulty, category) {
-    //example db url 
-    //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
-    let qNumURL = `amount=${qNum}`;
-    let diffURL = '';
-    if(difficulty !== 'any'){
-        diffURL = `&difficulty=${difficulty}`;
-    }
-    let catURL = ''
-    if(category !== 'any'){
-        catURL = `&category=${category}`
-    }
-    //final db url will include the amount, difficulty, category, and will be multiple choice by default
-    //if difficulty or category are not chosen, they will be empty in the url
-    //this is what we will use in our fetch
-    let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
-    return newUrl;
-}
-
 function handleFetch(fetchURL){
     // if the API is rate limited, it will throw a response code of 5
     // if not and the quiz is generated, then "response_code" will be 0
-    let qArr = [];
     fetch(fetchURL)
     .then(res => res.json())
     .then(data => {    
@@ -105,6 +106,7 @@ class questionObj {
         this.question = question;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
+        this.selectedAnswer = '';
     }
     
 }
@@ -136,10 +138,8 @@ function shuffle(array) {
   }
 
 function buildDB(fetchArr){
-    let qArr = [];
     for(let i = 0; i < fetchArr.length; i++){
         let q = buildQuestion(fetchArr[i]);
-        qArr.push(q);
         console.log(q);
         fetch(`http://localhost:3000/questions/`, {
             method: 'POST',
@@ -153,11 +153,11 @@ function buildDB(fetchArr){
             "difficulty": q.difficulty,
             "question": q.question,
             "answers": q.answers,
-            "correct_answer": q.correctAnswer
+            "correct_answer": q.correctAnswer,
+            "selected_answer": q.selectedAnswer
             })  
         })
     }
-    
     //return qArr;
 }
 
@@ -170,6 +170,42 @@ function buildQuestion(q) {
     answerArr = shuffle(answerArr);
     let newQ = new questionObj(q.category, q.difficulty, q.question, answerArr, q['correct_answer'])
     return newQ;
+}
+
+
+// We will be creating a local array that will hold all the question data
+// This function will only be pulling data from the db and not changing
+// If needed, can add to this function to by transferring data back and forth,
+// such as saving the selected answer and/or if it was correctly selected
+function buildQuiz(){
+    let qArr = [];
+    fetch(`http://localhost:3000/questions`)
+    .then(res => res.json())
+    .then(data => {
+        for(let i = 0; i < data.length; i++)
+        {
+            qArr.push(data[i]);
+        }
+    })
+    let quizContainer = document.querySelector('quiz-container');
+    //building new html block for each question
+    /*
+        Question: 1
+        Difficulty: Easy
+        Category: Sports
+        [ ] Example Answer 1
+        [✓] Example Answer 2
+        [ ] Example Answer 3
+        [ ] Example Answer 4
+        [Previous]      [Next]
+    */
+
+    for(let i = 0; i < qArr.length; i++){
+
+    }
+    
+    let newDiv = document.createElement('div');
+
 }
 
 document.addEventListener("DOMContentLoaded", init);

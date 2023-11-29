@@ -1,69 +1,18 @@
 {
   "questions": [
     {
-      "category": "Geography",
-      "difficulty": "easy",
-      "question": "What is the capital of Indonesia?",
-      "answers": [
-        "Medan",
-        "Jakarta",
-        "Bandung",
-        "Palembang"
-      ],
-      "correct_answer": "Jakarta",
-      "id": 1
-    },
-    {
-      "category": "Geography",
-      "difficulty": "hard",
-      "question": "What national museum will you find in Cooperstown, New York?",
-      "answers": [
-        "National Toy Hall of Fame",
-        "National Baseball Hall of Fame",
-        "Museum of Modern Art",
-        "Metropolitan Museum of Art"
-      ],
-      "correct_answer": "National Baseball Hall of Fame",
-      "id": 2
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "easy",
-      "question": "What is the default alias that Princess Garnet goes by in Final Fantasy IX?",
-      "answers": [
-        "Quina",
-        "Dagger",
-        "Dirk",
-        "Garnet"
-      ],
-      "correct_answer": "Dagger",
-      "id": 3
-    },
-    {
       "category": "Entertainment: Video Games",
       "difficulty": "medium",
-      "question": "The walls of the Goldenrod City Gym in &quot;Pok&eacute;mon Gold and Silver&quot; are arranged in the shape of which Pok&eacute;mon?",
+      "question": "The default playermodel of Garry&#039;s Mod is this Half Life 2 character.",
       "answers": [
-        "Pikachu",
-        "Pidgey",
-        "Bulbasaur",
-        "Clefairy"
+        "G-Man",
+        "Gordon Freeman",
+        "Isaac Kleiner",
+        "Alyx Vance"
       ],
-      "correct_answer": "Clefairy",
-      "id": 4
-    },
-    {
-      "category": "Entertainment: Japanese Anime &amp; Manga",
-      "difficulty": "medium",
-      "question": "In the &quot;Re:Zero&quot; manga series, which of the following Sin Archbishops eats Rem&#039;s existence?",
-      "answers": [
-        "Ley Batenkaitos",
-        "Petelgeuse Romanee-Conti",
-        "Louis Arneb",
-        "Roy Alphard"
-      ],
-      "correct_answer": "Ley Batenkaitos",
-      "id": 5
+      "correct_answer": "Isaac Kleiner",
+      "selected_answer": "",
+      "id": 10
     }
   ]
 }
