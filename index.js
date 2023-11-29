@@ -19,8 +19,8 @@ const init = () => {
         else{
             let fetchURL = buildQuizURL(qNum, difficulty, category)
             //console.log(fetchURL);
-            clearDB();
-            setTimeout(handleFetch(fetchURL), 1000);
+            setTimeout(clearDB(), 1000);
+            handleFetch(fetchURL)
             form.reset();
         }
     });
@@ -30,23 +30,30 @@ const init = () => {
 
 // We will be clearing local db.json because we need to throw away possible old question data
 // and fill with new and variable amounts of questions
-async function clearDB(){
+function clearDB(){
+    let idArr = [];
     fetch(`http://localhost:3000/questions`)
     .then(res => res.json())
     .then(data => {
         //console.log(data.length); 
-        for(let i = 0; i < data.length; i++){
+        for(let i = 0; i < data.length; i++)
+        {
+            idArr.push(data[i].id);
+        }
+        console.log(idArr);
+        for(let i = 0; i < idArr.length; i++){
             //console.log('deleted');
             //console.log(data[i].id)
-            fetch(`http://localhost:3000/questions/${data[i].id}`, {
+            fetch(`http://localhost:3000/questions/${idArr[i]}`, {
             method: 'DELETE',
             headers:
             {
                 "Content-Type": "application/json",
-                Accept: "plication/json"
+                Accept: "application/json"
             }
             })
-            .catch(error => {console.log(error)})
+            .catch
+            console.log(`deleted id:${idArr[i]}`)
         }
     })
 }
