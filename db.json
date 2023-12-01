@@ -1,74 +1,60 @@
 {
   "questions": [
     {
-      "category": "Science: Computers",
-      "difficulty": "medium",
-      "question": "When was the programming language &quot;C#&quot; released?",
+      "category": "Entertainment: Music",
+      "difficulty": "easy",
+      "question": "Who is the lead singer of the band Coldplay?",
       "answers": [
-        "2000",
-        "1998",
-        "2001",
-        "1999"
+        "Chris Wallace",
+        "Chris Martin",
+        "Chris Connelly",
+        "Chris Isaak"
       ],
-      "correct_answer": "2000",
+      "correct_answer": "Chris Martin",
       "selected_answer": "",
       "id": 1
     },
     {
-      "category": "General Knowledge",
-      "difficulty": "hard",
-      "question": "Sciophobia is the fear of what?",
+      "category": "Entertainment: Video Games",
+      "difficulty": "easy",
+      "question": "Which Elite Four member from the first generation of Pok&eacute;mon became the champion in the next generation?",
       "answers": [
-        "Shadows",
-        "Bright lights",
-        "Transportation",
-        "Eating"
+        "Agatha",
+        "Lance",
+        "Bruno",
+        "Lorelei"
       ],
-      "correct_answer": "Shadows",
+      "correct_answer": "Lance",
       "selected_answer": "",
       "id": 2
     },
     {
-      "category": "Art",
-      "difficulty": "hard",
-      "question": "What year was the Mona Lisa finished?",
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "medium",
+      "question": "In &quot;Little Witch Academia&quot;, what is Shiny Chariot&#039;s alias at Luna Nova Academy?",
       "answers": [
-        "1504",
-        "1487",
-        "1511",
-        "1523"
+        "Croix Meridies",
+        "Ursula Callistis",
+        "Anne Finnelan",
+        "Miranda Holbrook"
       ],
-      "correct_answer": "1504",
+      "correct_answer": "Ursula Callistis",
       "selected_answer": "",
       "id": 3
     },
     {
-      "category": "Science: Computers",
-      "difficulty": "hard",
-      "question": "According to DeMorgan&#039;s Theorem, the Boolean expression (AB)&#039; is equivalent to:",
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "medium",
+      "question": "In &quot;Little Witch Academia&quot;, what is Shiny Chariot&#039;s alias at Luna Nova Academy?",
       "answers": [
-        "A&#039; + B&#039;",
-        "A&#039;B + B&#039;A",
-        "AB&#039; + AB",
-        "A&#039;B&#039;"
+        "Croix Meridies",
+        "Ursula Callistis",
+        "Anne Finnelan",
+        "Miranda Holbrook"
       ],
-      "correct_answer": "A&#039; + B&#039;",
+      "correct_answer": "Ursula Callistis",
       "selected_answer": "",
       "id": 4
-    },
-    {
-      "category": "Animals",
-      "difficulty": "medium",
-      "question": "What is the common term for bovine spongiform encephalopathy (BSE)?",
-      "answers": [
-        "Mad Cow disease",
-        "Milk fever",
-        "Foot-and-mouth disease",
-        "Weil&#039;s disease"
-      ],
-      "correct_answer": "Mad Cow disease",
-      "selected_answer": "",
-      "id": 5
     }
   ]
 }

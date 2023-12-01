@@ -82,7 +82,7 @@ function clearDB(){
             
         })
         .then(idArr => {
-            console.log(idArr);
+            //console.log(idArr);
             for(let i = 0; i < idArr.length; i++){
                 //console.log('deleted');
                 //console.log(data[i].id)
@@ -95,6 +95,7 @@ function clearDB(){
                         Accept: "application/json"
                     }
                     })
+                    .catch(error => console.log("could not resolve: " + error))
                     console.log(`deleted id:${idArr[i]}`)
                 //}, 200);
             }
@@ -168,7 +169,7 @@ function shuffle(array) {
 function buildDB(fetchArr){
     for(let i = 0; i < fetchArr.length; i++){
         let q = buildQuestion(fetchArr[i]);
-        console.log(q);
+        //console.log(q);
         fetch(`http://localhost:3000/questions/`, {
             method: 'POST',
             headers:
@@ -206,46 +207,59 @@ function buildQuestion(q) {
 // If needed, can add to this function to by transferring data back and forth,
 // such as saving the selected answer and/or if it was correctly selected
 function buildQuiz(){
-    let qArr = [];
     fetch(`http://localhost:3000/questions`)
     .then(res => res.json())
     .then(data => {
-        for(let i = 0; i < data.length; i++)
-        {
-            qArr.push(data[i]);
+        return new Promise(function(resolve) {
+            let qArr = [];
+            for(let i = 0; i < data.length; i++)
+            {
+                qArr.push(data[i]);
+            }
+            resolve(qArr)
+        })
+        
+    })
+    .then(qArr => {
+        let quizContainer = document.getElementById("quiz-container");
+        //building new html block for each question
+        /*
+            Question: 1
+            Difficulty: Easy
+            Category: Sports
+            [ ] Example Answer 1
+            [✓] Example Answer 2
+            [ ] Example Answer 3
+            [ ] Example Answer 4
+            [Previous]      [Next]
+        */
+        //let quizDiv = document.getElementById('quiz-container');
+        console.log("question arr when building:")
+        console.log(qArr)
+        for(let j = 0; j < qArr.length; j++){
+            //buildQuestionDiv(qArr[j], j)
+            console.log("each question:")
+            console.log(qArr[j])
+
+            quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
         }
     })
-    let quizContainer = document.querySelector('quiz-container');
-    //building new html block for each question
-    /*
-        Question: 1
-        Difficulty: Easy
-        Category: Sports
-        [ ] Example Answer 1
-        [✓] Example Answer 2
-        [ ] Example Answer 3
-        [ ] Example Answer 4
-        [Previous]      [Next]
-    */
-    let quizDiv = document.getElementById('quiz-container');
-    console.log('quiz div ' + quizDiv)
-    for(let i = 0; i < qArr.length; i++){
-        quizDiv.appendChild(buildQuestionDiv(qArr[i], (i+1)));
-    }
-    console.log(quizDiv)
+    
+    
+    //console.log(quizDiv)
     
 
 }
 
-function buildQuestionDiv(q, pos){
+function buildQuestionDiv(q, index){
     let qDiv = document.createElement('div');
-    qDiv.class = 'question-container'
+    qDiv.classList.add('question-container');
     let qH4 = document.createElement('h4');
     let diffH4 = document.createElement('h4');
     let catH4 = document.createElement('h4');
     let questionText = document.createElement('h3');
-    qH4.textContent = `Question ${pos}:`;
-    diffH4.textContent = q.difficulty;
+    qH4.textContent = `Question ${index+1}:`;
+    diffH4.textContent = `Difficulty: ${q.difficulty}`;
     catH4.textContent = q.category;
     questionText.textContent = q.question;
 
@@ -253,20 +267,20 @@ function buildQuestionDiv(q, pos){
     qDiv.appendChild(diffH4);
     qDiv.appendChild(catH4);
     qDiv.appendChild(questionText);
-    qDiv.appendChild(document.createElement('br'));
+    //qDiv.appendChild(document.createElement('br'));
     for(let i = 0; i < q.answers.length; i++){
         let ansDiv = document.createElement('div');
-        ansDiv.class = 'answer-container';
+        ansDiv.classList.add('answer-container');
 
         let checkDiv = document.createElement('div');
-        checkDiv.class = 'check-box';
-        let checkbox = document.createElement(input);
+        checkDiv.classList.add('check-box');
+        let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.value = 'Value1';
         checkDiv.appendChild(checkbox);
 
         let ansText = document.createElement('div');
-        ansText.class = 'answer-text';
+        ansText.classList.add('answer-text');
         ansText.textContent = q.answers[i];
 
         ansDiv.appendChild(checkDiv);

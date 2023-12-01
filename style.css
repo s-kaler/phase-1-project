@@ -27,6 +27,11 @@ body {
     width: 40%;
 }
 
+.question-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 h4 {
     margin-top: auto;
     margin-bottom: auto;
@@ -47,10 +52,11 @@ h4 {
     background-color: lightgrey;
 }
 
+
 .answer-text {
     display: inline-block;
     font-size: 20px;
-    width: 96%;
+    width: 95%;
     background-color: whitesmoke;
 }
 
