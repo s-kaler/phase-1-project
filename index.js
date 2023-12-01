@@ -19,8 +19,19 @@ const init = () => {
         else{
             let fetchURL = buildQuizURL(qNum, difficulty, category)
             //console.log(fetchURL);
-            setTimeout(clearDB(), 1000);
-            setTimeout(handleFetch(fetchURL), 1000);
+            clearDB()
+            .then((result => {
+                console.log(result)
+                setTimeout(() => {
+                    handleFetch(fetchURL)
+                    .then((result2) => {
+                        console.log(result2)
+                        setTimeout(() => {
+                            buildQuiz()
+                        }, 1000);
+                    })
+                }, 2000);
+            }))
             
             form.reset();
         }
@@ -51,52 +62,69 @@ function buildQuizURL(qNum, difficulty, category) {
 // We will be clearing local db.json because we need to throw away possible old question data
 // and fill with new and variable amounts of questions
 function clearDB(){
-    let idArr = [];
-    fetch(`http://localhost:3000/questions`)
-    .then(res => res.json())
-    .then(data => {
-        // Building an array of ids currently stored in the local db.json server
-        // these are ids that will be set to delete so that we can build add new questions
-        //console.log(data.length); 
-        for(let i = 0; i < data.length; i++)
-        {
-            idArr.push(data[i].id);
-        }
-        console.log(idArr);
-        for(let i = 0; i < idArr.length; i++){
-            //console.log('deleted');
-            //console.log(data[i].id)
-            fetch(`http://localhost:3000/questions/${idArr[i]}`, {
-            method: 'DELETE',
-            headers:
-            {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            }
+
+    return new Promise(function(resolve) {
+        //let idArr = [];
+        fetch(`http://localhost:3000/questions`)
+        .then(res => res.json())
+        .then(data => {
+            return new Promise(function(resolve) {
+                // Building an array of ids currently stored in the local db.json server
+                // these are ids that will be set to delete so that we can build add new questions
+                //console.log(data.length); 
+                let newArr = []
+                for(let i = 0; i < data.length; i++)
+                {
+                    newArr.push(data[i].id);
+                }
+                resolve(newArr)
             })
-            .catch
-            console.log(`deleted id:${idArr[i]}`)
-        }
+            
+        })
+        .then(idArr => {
+            console.log(idArr);
+            for(let i = 0; i < idArr.length; i++){
+                //console.log('deleted');
+                //console.log(data[i].id)
+                //setTimeout(() => {
+                    fetch(`http://localhost:3000/questions/${idArr[i]}`, {
+                    method: 'DELETE',
+                    headers:
+                    {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    }
+                    })
+                    console.log(`deleted id:${idArr[i]}`)
+                //}, 200);
+            }
+            resolve("Deleted all items");
+        })
     })
+    
 }
 
 function handleFetch(fetchURL){
-    // if the API is rate limited, it will throw a response code of 5
-    // if not and the quiz is generated, then "response_code" will be 0
-    fetch(fetchURL)
-    .then(res => res.json())
-    .then(data => {    
-    //console.log(data);
-    //console.log(data['response_code']);
-    if(data['response_code'] === '5'){
-        alert('Rate limited, please try again');
-    }
-    else if(data['response_code'] === 0){
-        //console.log(data);
-        let fetchArr = data.results;
-        buildDB(fetchArr);
-    }
-  }) 
+    return new Promise(function(resolve) {
+        // if the API is rate limited, it will throw a response code of 5
+        // if not and the quiz is generated, then "response_code" will be 0
+        fetch(fetchURL)
+        .then(res => res.json())
+        .then(data => {    
+            //console.log(data);
+            //console.log(data['response_code']);
+            if(data['response_code'] === '5'){
+                alert('Rate limited, please try again');
+            }
+            else if(data['response_code'] === 0){
+                //console.log(data);
+                let fetchArr = data.results;
+                buildDB(fetchArr);  
+                resolve("generated db")
+            }
+        })
+        
+    })
 }
 
 class questionObj {
@@ -199,13 +227,55 @@ function buildQuiz(){
         [ ] Example Answer 4
         [Previous]      [Next]
     */
-
+    let quizDiv = document.getElementById('quiz-container');
+    console.log('quiz div ' + quizDiv)
     for(let i = 0; i < qArr.length; i++){
-
+        quizDiv.appendChild(buildQuestionDiv(qArr[i], (i+1)));
     }
+    console.log(quizDiv)
     
-    let newDiv = document.createElement('div');
 
+}
+
+function buildQuestionDiv(q, pos){
+    let qDiv = document.createElement('div');
+    qDiv.class = 'question-container'
+    let qH4 = document.createElement('h4');
+    let diffH4 = document.createElement('h4');
+    let catH4 = document.createElement('h4');
+    let questionText = document.createElement('h3');
+    qH4.textContent = `Question ${pos}:`;
+    diffH4.textContent = q.difficulty;
+    catH4.textContent = q.category;
+    questionText.textContent = q.question;
+
+    qDiv.appendChild(qH4);
+    qDiv.appendChild(diffH4);
+    qDiv.appendChild(catH4);
+    qDiv.appendChild(questionText);
+    qDiv.appendChild(document.createElement('br'));
+    for(let i = 0; i < q.answers.length; i++){
+        let ansDiv = document.createElement('div');
+        ansDiv.class = 'answer-container';
+
+        let checkDiv = document.createElement('div');
+        checkDiv.class = 'check-box';
+        let checkbox = document.createElement(input);
+        checkbox.type = 'checkbox';
+        checkbox.value = 'Value1';
+        checkDiv.appendChild(checkbox);
+
+        let ansText = document.createElement('div');
+        ansText.class = 'answer-text';
+        ansText.textContent = q.answers[i];
+
+        ansDiv.appendChild(checkDiv);
+        ansDiv.appendChild(ansText);
+
+        qDiv.appendChild(ansDiv);
+    }
+    console.log(qDiv);
+    return qDiv;
 }
 
 document.addEventListener("DOMContentLoaded", init);

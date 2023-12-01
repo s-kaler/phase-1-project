@@ -1,18 +1,74 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Video Games",
+      "category": "Science: Computers",
       "difficulty": "medium",
-      "question": "The default playermodel of Garry&#039;s Mod is this Half Life 2 character.",
+      "question": "When was the programming language &quot;C#&quot; released?",
       "answers": [
-        "G-Man",
-        "Gordon Freeman",
-        "Isaac Kleiner",
-        "Alyx Vance"
+        "2000",
+        "1998",
+        "2001",
+        "1999"
       ],
-      "correct_answer": "Isaac Kleiner",
+      "correct_answer": "2000",
       "selected_answer": "",
-      "id": 10
+      "id": 1
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "hard",
+      "question": "Sciophobia is the fear of what?",
+      "answers": [
+        "Shadows",
+        "Bright lights",
+        "Transportation",
+        "Eating"
+      ],
+      "correct_answer": "Shadows",
+      "selected_answer": "",
+      "id": 2
+    },
+    {
+      "category": "Art",
+      "difficulty": "hard",
+      "question": "What year was the Mona Lisa finished?",
+      "answers": [
+        "1504",
+        "1487",
+        "1511",
+        "1523"
+      ],
+      "correct_answer": "1504",
+      "selected_answer": "",
+      "id": 3
+    },
+    {
+      "category": "Science: Computers",
+      "difficulty": "hard",
+      "question": "According to DeMorgan&#039;s Theorem, the Boolean expression (AB)&#039; is equivalent to:",
+      "answers": [
+        "A&#039; + B&#039;",
+        "A&#039;B + B&#039;A",
+        "AB&#039; + AB",
+        "A&#039;B&#039;"
+      ],
+      "correct_answer": "A&#039; + B&#039;",
+      "selected_answer": "",
+      "id": 4
+    },
+    {
+      "category": "Animals",
+      "difficulty": "medium",
+      "question": "What is the common term for bovine spongiform encephalopathy (BSE)?",
+      "answers": [
+        "Mad Cow disease",
+        "Milk fever",
+        "Foot-and-mouth disease",
+        "Weil&#039;s disease"
+      ],
+      "correct_answer": "Mad Cow disease",
+      "selected_answer": "",
+      "id": 5
     }
   ]
 }
