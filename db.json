@@ -3,58 +3,16 @@
     {
       "category": "Entertainment: Music",
       "difficulty": "easy",
-      "question": "Who is the lead singer of the band Coldplay?",
+      "question": "Which band recorded the album &quot;Parallel Lines&quot;?",
       "answers": [
-        "Chris Wallace",
-        "Chris Martin",
-        "Chris Connelly",
-        "Chris Isaak"
+        "Paramore",
+        "Blondie",
+        "Coldplay",
+        "The Police"
       ],
-      "correct_answer": "Chris Martin",
+      "correct_answer": "Blondie",
       "selected_answer": "",
       "id": 1
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "easy",
-      "question": "Which Elite Four member from the first generation of Pok&eacute;mon became the champion in the next generation?",
-      "answers": [
-        "Agatha",
-        "Lance",
-        "Bruno",
-        "Lorelei"
-      ],
-      "correct_answer": "Lance",
-      "selected_answer": "",
-      "id": 2
-    },
-    {
-      "category": "Entertainment: Japanese Anime &amp; Manga",
-      "difficulty": "medium",
-      "question": "In &quot;Little Witch Academia&quot;, what is Shiny Chariot&#039;s alias at Luna Nova Academy?",
-      "answers": [
-        "Croix Meridies",
-        "Ursula Callistis",
-        "Anne Finnelan",
-        "Miranda Holbrook"
-      ],
-      "correct_answer": "Ursula Callistis",
-      "selected_answer": "",
-      "id": 3
-    },
-    {
-      "category": "Entertainment: Japanese Anime &amp; Manga",
-      "difficulty": "medium",
-      "question": "In &quot;Little Witch Academia&quot;, what is Shiny Chariot&#039;s alias at Luna Nova Academy?",
-      "answers": [
-        "Croix Meridies",
-        "Ursula Callistis",
-        "Anne Finnelan",
-        "Miranda Holbrook"
-      ],
-      "correct_answer": "Ursula Callistis",
-      "selected_answer": "",
-      "id": 4
     }
   ]
 }

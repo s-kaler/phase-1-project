@@ -164,8 +164,10 @@ function shuffle(array) {
       [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }  
     return array;
-  }
+}
 
+// Building the local db with data gained from website API in a different format
+// so that we can use it locally in our own db.json and not make extra calls
 function buildDB(fetchArr){
     for(let i = 0; i < fetchArr.length; i++){
         let q = buildQuestion(fetchArr[i]);
@@ -190,6 +192,7 @@ function buildDB(fetchArr){
     //return qArr;
 }
 
+// Building a question object that will be used to store onto our local db
 function buildQuestion(q) {
     let answerArr = [];
     answerArr.push(q['correct_answer']);
@@ -200,7 +203,6 @@ function buildQuestion(q) {
     let newQ = new questionObj(q.category, q.difficulty, q.question, answerArr, q['correct_answer'])
     return newQ;
 }
-
 
 // We will be creating a local array that will hold all the question data
 // This function will only be pulling data from the db and not changing
@@ -244,19 +246,17 @@ function buildQuiz(){
             quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
         }
     })
-    
-    
     //console.log(quizDiv)
-    
-
 }
 
+// this function will handle building our question object into an html element
+// 
 function buildQuestionDiv(q, index){
     let qDiv = document.createElement('div');
     qDiv.classList.add('question-container');
     let qH4 = document.createElement('h4');
-    let diffH4 = document.createElement('h4');
-    let catH4 = document.createElement('h4');
+    let diffH4 = document.createElement('h3');
+    let catH4 = document.createElement('h3');
     let questionText = document.createElement('h3');
     qH4.textContent = `Question ${index+1}:`;
     diffH4.textContent = `Difficulty: ${q.difficulty}`;
@@ -268,6 +268,7 @@ function buildQuestionDiv(q, index){
     qDiv.appendChild(catH4);
     qDiv.appendChild(questionText);
     //qDiv.appendChild(document.createElement('br'));
+    let boxArr = [];
     for(let i = 0; i < q.answers.length; i++){
         let ansDiv = document.createElement('div');
         ansDiv.classList.add('answer-container');
@@ -276,7 +277,7 @@ function buildQuestionDiv(q, index){
         checkDiv.classList.add('check-box');
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.value = 'Value1';
+        //checkbox.value = 'Value1';
         checkDiv.appendChild(checkbox);
 
         let ansText = document.createElement('div');
@@ -287,9 +288,26 @@ function buildQuestionDiv(q, index){
         ansDiv.appendChild(ansText);
 
         qDiv.appendChild(ansDiv);
+        boxArr.push(checkbox);
+        checkboxListener(boxArr);
     }
     console.log(qDiv);
     return qDiv;
+}
+
+// using array forEach function to add event listener per checkbox
+// will ensure 
+function checkboxListener(boxArr){
+    boxArr.forEach(box => {
+        box.addEventListener('change', (e) =>{
+            console.log(e.target.checked);
+                boxArr.forEach(element => {
+                    element.checked = false;
+                })
+                box.checked = true
+            
+        })
+    });
 }
 
 document.addEventListener("DOMContentLoaded", init);
