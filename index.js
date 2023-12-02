@@ -205,8 +205,8 @@ function postQ(q){
             "difficulty": q.difficulty,
             "question": q.question,
             "answers": q.answers,
-            "correct_answer": q.correctAnswer,
-            "selected_answer": q.selectedAnswer
+            "correct_answer": q['correct_answer'],
+            "selected_answer": q['selected_answer']
             })
         })
         .then(res => res.json())
@@ -408,7 +408,7 @@ function handleQuiz(qArr, quizContainer){
     quizForm.addEventListener('submit', (e) => {
         e.preventDefault()
         submitButton.disabled = true;
-        
+
     })
 }
 
