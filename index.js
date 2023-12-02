@@ -276,10 +276,10 @@ function buildQuestionDiv(q, index){
         qDiv.appendChild(ansDiv);
         // adding each answer container, including checkbox and text to array
         ansArr.push(ansDiv)
-        
-        selectListener(ansDiv, q)
     }
-
+    for(let i = 0; i < ansArr.length; i++){
+        selectListener(ansArr[i], q)
+    }
     //console.log(qDiv);
     return qDiv;
 }
@@ -289,18 +289,25 @@ function buildQuestionDiv(q, index){
 function selectListener(ansDiv, q){
     //console.log(ansDiv)
     let selected = false;
-    let box = ansDiv.querySelector('.check-box')
+    let box = ansDiv.querySelector('input')
     let ansText = ansDiv.querySelector('.answer-text')
-    let boxes = ansDiv.parentNode.querySelectorAll('.check-box')
-
-    //let boxArr = [].slice.ansDiv.parentNode.getElementsByClassName('box'));
+    let boxes = ansDiv.parentNode.querySelectorAll('input')
+    let answers = ansDiv.parentNode.querySelectorAll('.answer-text')
     console.log(boxes)
+    console.log(box.checked)
 
     box.addEventListener('change', (e) =>{
         //console.log(e.target.checked); 
         boxes.forEach(element => {
             if(element !== box){
                 element.checked = false;
+                element.style['background-color'] = "white";
+            }
+        })
+        answers.forEach(element => {
+            if(element !== box){
+                element.checked = false;
+                element.style['background-color'] = "white";
             }
         })
         if(box.checked === true){
@@ -312,15 +319,20 @@ function selectListener(ansDiv, q){
             selected = false;
         }
     })
+
     ansDiv.addEventListener('mouseover', (e) =>{
-        ansText.style['background-color'] = "lightyellow";
+        if(box.checked === false){
+            ansText.style['background-color'] = "lightyellow";
+        }
     })
     ansDiv.addEventListener('mouseout', (e) => {
         //console.log(box.checked)
-        //if(box.checked === false){
-        ansText.style['background-color'] = "white";
-        //}
+        if(box.checked === false){
+            ansText.style['background-color'] = "white";
+        }
+        
     })
+
 }
 
 
@@ -389,13 +401,14 @@ function buildQuiz(quizCreated){
 
 // This function will handle the processing of all answered questions
 function handleQuiz(qArr, quizContainer){
-    console.log(qArr)
-    console.log(quizContainer)
+    //console.log(qArr)
+    //console.log(quizContainer)
     let quizForm = quizContainer.querySelector('#submit-quiz')
     let submitButton = quizForm.querySelector('#submit-button')
     quizForm.addEventListener('submit', (e) => {
         e.preventDefault()
         submitButton.disabled = true;
+        
     })
 }
 

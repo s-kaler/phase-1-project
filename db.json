@@ -1,16 +1,124 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Cartoon &amp; Animations",
+      "category": "Celebrities",
       "difficulty": "medium",
-      "question": "What is the standard frame rate for animation?",
+      "question": "In which of these TV shows did the chef Gordon Ramsay not appear?",
       "answers": [
-        "60 FPS",
-        "24 FPS",
-        "12 FPS",
-        "30 FPS"
+        "Auction Hunters",
+        "Ramsay&#039;s Kitchen Nightmares",
+        "Hell&#039;s Kitchen",
+        "Hotel Hell"
       ],
       "id": 1
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "hard",
+      "question": "In &quot;Highschool of the Dead&quot;, where did Komuro and Saeko establish to meet after the bus explosion?",
+      "answers": [
+        "The Center Mall",
+        "On The Main Bridge",
+        "Komuro&#039;s House",
+        "Eastern Police Station"
+      ],
+      "id": 2
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "medium",
+      "question": "In the &quot;Sailor Moon&quot; series, what is Sailor Jupiter&#039;s civilian name?",
+      "answers": [
+        "Minako Aino",
+        "Rei Hino",
+        "Makoto Kino",
+        "Usagi Tsukino"
+      ],
+      "id": 3
+    },
+    {
+      "category": "Entertainment: Books",
+      "difficulty": "medium",
+      "question": "In the year 1818, novelist Mary Shelly is credited with writing a fiction novel and creating this infamous character.",
+      "answers": [
+        "Frankenstein&#039;s monster",
+        "The Invisible Man",
+        "Dracula",
+        "The Thing"
+      ],
+      "id": 4
+    },
+    {
+      "category": "Entertainment: Film",
+      "difficulty": "easy",
+      "question": "When was the movie &#039;Con Air&#039; released?",
+      "answers": [
+        "1997",
+        "1990",
+        "1985",
+        "1999"
+      ],
+      "id": 5
+    },
+    {
+      "category": "Geography",
+      "difficulty": "easy",
+      "question": "The derisive acronym &quot;PIIGS&quot; refers to which of the following European countries and their economic statuses?",
+      "answers": [
+        "Poland, Iceland, Italy, Greece, Serbia",
+        "Portugal, Ireland, Italy, Greece, Spain",
+        "Portugal, Iceland, Ireland, Greece, Serbia",
+        "Poland, Iceland, Italy, Greenland, Spain"
+      ],
+      "id": 6
+    },
+    {
+      "category": "Science &amp; Nature",
+      "difficulty": "easy",
+      "question": "What is the standard atomic weight of a Plutonium nucleus?",
+      "answers": [
+        "481",
+        "244",
+        "94",
+        "128"
+      ],
+      "id": 7
+    },
+    {
+      "category": "History",
+      "difficulty": "medium",
+      "question": "What year were the Marian Reforms instituted in the Roman Republic?",
+      "answers": [
+        "264 BCE",
+        "42 BCE",
+        "102 CE",
+        "107 BCE"
+      ],
+      "id": 8
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "In the Portal series of games, who was the founder of Aperture Science?",
+      "answers": [
+        "Wallace Breen",
+        "Gordon Freeman",
+        "Cave Johnson",
+        "GLaDOs"
+      ],
+      "id": 9
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "In the &quot;Call Of Duty: Zombies&quot; map &quot;Origins&quot;, how many numbered power generators are there?",
+      "answers": [
+        "8",
+        "5",
+        "3",
+        "6"
+      ],
+      "id": 10
     }
   ]
 }
