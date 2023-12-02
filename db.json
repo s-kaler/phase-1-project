@@ -1,124 +1,64 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Musicals &amp; Theatres",
-      "difficulty": "hard",
-      "question": "In Les Mis&eacute;rables, who is Prison Code 24601?",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "Which American manufactured submachine gun was informally known by the American soldiers that used it as &quot;Grease Gun&quot;?",
       "answers": [
-        "Jean Valjean",
-        "Marius Pontmercy",
-        "Javert",
-        "Jean Claude Van Damme"
+        "Colt 9mm",
+        "M3",
+        "Thompson",
+        "MAC-10"
       ],
       "id": 1
     },
     {
-      "category": "Entertainment: Video Games",
+      "category": "General Knowledge",
       "difficulty": "medium",
-      "question": "In &quot;Resident Evil 2&quot;, what is Leon Kennedy&#039;s middle name?",
+      "question": "What is the full title of the Prime Minister of the UK?",
       "answers": [
-        "Sam",
-        "Simon",
-        "Shaun",
-        "Scott"
+        "Manager of the Crown Estate",
+        "Duke of Cambridge",
+        "Her Majesty&#039;s Loyal Opposition",
+        "First Lord of the Treasury"
       ],
       "id": 2
     },
     {
-      "category": "Entertainment: Television",
-      "difficulty": "hard",
-      "question": "Who played the sun baby in the original run of Teletubbies?",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "The Fields Medal, one of the most sought after awards in mathematics, is awarded every how many years?",
       "answers": [
-        "Jessica Smith",
-        "Lisa Brockwell",
-        "Sue Monroe",
-        "Pui Fan Lee"
+        "3",
+        "6",
+        "5",
+        "4"
       ],
       "id": 3
     },
     {
-      "category": "Entertainment: Comics",
-      "difficulty": "hard",
-      "question": "In the &quot;Archie&quot; comics, who was Jughead&#039;s first girlfriend?",
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "What is the last letter of the Greek alphabet?",
       "answers": [
-        "Joani",
-        "Margret",
-        "Ethel",
-        "Debbi"
+        "Mu",
+        "Epsilon",
+        "Omega",
+        "Kappa"
       ],
       "id": 4
     },
     {
-      "category": "Science: Computers",
+      "category": "General Knowledge",
       "difficulty": "medium",
-      "question": "All of the following programs are classified as raster graphics editors EXCEPT:",
+      "question": "Computer manufacturer Compaq was acquired for $25 billion dollars in 2002 by which company?",
       "answers": [
-        "Inkscape",
-        "Adobe Photoshop",
-        "GIMP",
-        "Paint.NET"
+        "Hewlett-Packard",
+        "Dell",
+        "Toshiba",
+        "Asus"
       ],
       "id": 5
-    },
-    {
-      "category": "Entertainment: Music",
-      "difficulty": "easy",
-      "question": "Who is the lead singer of the British pop rock band Coldplay?",
-      "answers": [
-        "Jonny Buckland",
-        "Guy Berryman",
-        "Will Champion",
-        "Chris Martin"
-      ],
-      "id": 6
-    },
-    {
-      "category": "Sports",
-      "difficulty": "medium",
-      "question": "Which Formula One driver was nicknamed &#039;The Professor&#039;?",
-      "answers": [
-        "Alain Prost",
-        "Ayrton Senna",
-        "Emerson Fittipaldi",
-        "Niki Lauda"
-      ],
-      "id": 7
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "easy",
-      "question": "How tall is the Burj Khalifa?",
-      "answers": [
-        "3,024 ft",
-        "2,717 ft",
-        "2,722 ft",
-        "2,546 ft"
-      ],
-      "id": 8
-    },
-    {
-      "category": "Geography",
-      "difficulty": "medium",
-      "question": "The historical city Timbuktu is located in which West African country?",
-      "answers": [
-        "Mali",
-        "Burkina Faso",
-        "Niger",
-        "Senegal"
-      ],
-      "id": 9
-    },
-    {
-      "category": "Entertainment: Books",
-      "difficulty": "medium",
-      "question": "In Terry Pratchett&#039;s Discworld novel &#039;Wyrd Sisters&#039;, which of these are not one of the three main witches?",
-      "answers": [
-        "Nanny Ogg",
-        "Magrat Garlick",
-        "Granny Weatherwax",
-        "Winny Hathersham"
-      ],
-      "id": 10
     }
   ]
 }

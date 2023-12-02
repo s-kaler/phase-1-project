@@ -1,3 +1,5 @@
+//warning: do not use --watch when running json-server db.json
+
 let quizGenerated = false;
 //we will be generating a quiz with this link and modifiers attached
 let dbURL = "https://opentdb.com/api.php?";
@@ -6,6 +8,7 @@ const init = () => {
     let form = document.querySelector('#generate-form');
     let generateButton = document.querySelector('#generate-button')
     let qArr = [];
+    let quizCreated = false;
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let qNum = e.target["q-num"].value;
@@ -21,30 +24,14 @@ const init = () => {
         else{
             //generateButton.disabled = true;
             //let fetchURL = buildURL(qNum, difficulty, category)
+            quizCreated = true;
             
             clearDB()
             .then(() => buildURL(qNum, difficulty, category))
             .then(fetchURL => handleFetch(fetchURL))
             .then(qArr => buildDB(qArr))
-            .then(() => buildQuiz())
+            .then(() => buildQuiz(quizCreated))
             
-            /*
-            .then((result => {
-                console.log(result)
-                setTimeout(() => {
-                    handleFetch(fetchURL)
-                    .then((result2) => {
-                        console.log(result2)
-                        setTimeout(() => {
-                            buildQuiz();
-                        }, 1000);
-                    })
-                }, 2000);
-            }))
-            */
-
-            //buildQuiz()
-
             form.reset();
             return false;
         }
@@ -246,7 +233,7 @@ function buildQuestion(q) {
 // This function will only be pulling data from the db and not changing
 // If needed, can add to this function to by transferring data back and forth,
 // such as saving the selected answer and/or if it was correctly selected
-function buildQuiz(){
+function buildQuiz(quizCreated){
     fetch(`http://localhost:3000/questions`)
     .then(res => res.json())
     .then(data => {
@@ -262,6 +249,7 @@ function buildQuiz(){
         })
     })
     .then(qArr => {
+        
         let quizContainer = document.getElementById("quiz-container");
         //building new html block for each question
         /*
@@ -274,7 +262,10 @@ function buildQuiz(){
             [ ] Example Answer 4
             [Previous]      [Next]
         */
-        //let quizDiv = document.getElementById('quiz-container');
+        if(quizCreated){
+            quizContainer.innerHTML = '';
+        }
+
         console.log("question arr when building:")
         //console.log(qArr)
         let qObjArr = []
@@ -366,5 +357,6 @@ function checkboxListener(boxArr){
         })
     });
 }
+
 
 document.addEventListener("DOMContentLoaded", init);
