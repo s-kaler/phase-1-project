@@ -1,64 +1,40 @@
 {
   "questions": [
     {
-      "category": "General Knowledge",
+      "category": "Entertainment: Video Games",
       "difficulty": "medium",
-      "question": "Which American manufactured submachine gun was informally known by the American soldiers that used it as &quot;Grease Gun&quot;?",
+      "question": "When was the video game &quot;P.A.M.E.L.A.&quot; released on Steam?",
       "answers": [
-        "Colt 9mm",
-        "M3",
-        "Thompson",
-        "MAC-10"
+        "March 9, 2017",
+        "October 23, 1997",
+        "February 16, 2015",
+        "January 7, 2007"
       ],
       "id": 1
     },
     {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "What is the full title of the Prime Minister of the UK?",
+      "category": "Entertainment: Film",
+      "difficulty": "easy",
+      "question": "The Queen song `A Kind Of Magic` is featured in which 1986 film?",
       "answers": [
-        "Manager of the Crown Estate",
-        "Duke of Cambridge",
-        "Her Majesty&#039;s Loyal Opposition",
-        "First Lord of the Treasury"
+        "Flash Gordon",
+        "Highlander",
+        "Howard the Duck",
+        "Labyrinth"
       ],
       "id": 2
     },
     {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "The Fields Medal, one of the most sought after awards in mathematics, is awarded every how many years?",
+      "category": "Entertainment: Board Games",
+      "difficulty": "hard",
+      "question": "What is the world&#039;s oldest board game?",
       "answers": [
-        "3",
-        "6",
-        "5",
-        "4"
+        "Chess",
+        "Senet",
+        "Go",
+        "Checkers"
       ],
       "id": 3
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "What is the last letter of the Greek alphabet?",
-      "answers": [
-        "Mu",
-        "Epsilon",
-        "Omega",
-        "Kappa"
-      ],
-      "id": 4
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "Computer manufacturer Compaq was acquired for $25 billion dollars in 2002 by which company?",
-      "answers": [
-        "Hewlett-Packard",
-        "Dell",
-        "Toshiba",
-        "Asus"
-      ],
-      "id": 5
     }
   ]
 }

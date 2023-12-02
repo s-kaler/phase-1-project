@@ -44,6 +44,15 @@ h3 {
     margin-bottom: auto;
 }
 
+.qHeader {
+    padding-bottom: 2px;
+}
+
+.qText {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 .answer-container{
     padding-top: 4px;
     padding-bottom: 4px
@@ -64,6 +73,7 @@ h3 {
     font-size: 20px;
     width: 95%;
     background-color: whitesmoke;
+    margin-left: 5px;
 }
 
 .button-container {

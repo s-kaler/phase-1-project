@@ -25,20 +25,22 @@ const init = () => {
             //generateButton.disabled = true;
             //let fetchURL = buildURL(qNum, difficulty, category)
             quizCreated = true;
-            
+            let generatedArr = [];
             clearDB()
             .then(() => buildURL(qNum, difficulty, category))
             .then(fetchURL => handleFetch(fetchURL))
             .then(qArr => buildDB(qArr))
             .then(() => buildQuiz(quizCreated))
+            .then((qArr) => handleQuiz(qArr))
             
             form.reset();
             return false;
         }
     });
-    let boxArr = [].slice.call(document.getElementsByClassName('box'));
-    console.log(boxArr);
-    checkboxListener(boxArr);
+    // used for example boxes only
+    //let boxArr = [].slice.call(document.getElementsByClassName('box'));
+    //console.log(boxArr);
+    //checkboxListener(boxArr);
 
 }
 
@@ -100,7 +102,7 @@ function clearDB(){
                     }
                     })
                     .catch(error => console.log("could not resolve: " + error))
-                    console.log(`deleted id:${idArr[i]}`)
+                    //console.log(`deleted id:${idArr[i]}`)
                 
             }
             resolve("Deleted all items");
@@ -117,7 +119,7 @@ function handleFetch(fetchURL){
         fetch(fetchURL)
         .then(res => res.json())
         .then(data => {    
-            console.log(data);
+            //console.log(data);
             //console.log(data['response_code']);
             if(data['response_code'] === '5'){
                 alert('Rate limited, please try again');
@@ -178,8 +180,8 @@ function shuffle(array) {
 // so that we can use it locally in our own db.json and not make extra calls
 function buildDB(qArr){
     return new Promise (resolve => {
-        console.log('POST fetchArr:')
-        console.log(qArr)
+        //console.log('POST fetchArr:')
+        //console.log(qArr)
         promArr = [];
         qArr.forEach((q) => {
             //console.log(q);
@@ -216,7 +218,6 @@ function postQ(q){
     })
 }
 
-
 // Building a question object that will be used to store onto our local db
 function buildQuestion(q) {
     let answerArr = [];
@@ -229,73 +230,10 @@ function buildQuestion(q) {
     return newQ;
 }
 
-// We will be creating a local array that will hold all the question data
-// This function will only be pulling data from the db and not changing
-// If needed, can add to this function to by transferring data back and forth,
-// such as saving the selected answer and/or if it was correctly selected
-function buildQuiz(quizCreated){
-    fetch(`http://localhost:3000/questions`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        return new Promise(function(resolve) {
-            let qArr = [];
-            for(let i = 0; i < data.length; i++)
-            {
-                qArr.push(data[i]);
-            }
-            console.log(qArr)
-            resolve(qArr)
-        })
-    })
-    .then(qArr => {
-        
-        let quizContainer = document.getElementById("quiz-container");
-        //building new html block for each question
-        /*
-            Question: 1
-            Difficulty: Easy
-            Category: Sports
-            [ ] Example Answer 1
-            [✓] Example Answer 2
-            [ ] Example Answer 3
-            [ ] Example Answer 4
-            [Previous]      [Next]
-        */
-        if(quizCreated){
-            quizContainer.innerHTML = '';
-        }
-
-        console.log("question arr when building:")
-        //console.log(qArr)
-        let qObjArr = []
-        for(let j = 0; j < qArr.length; j++){
-            //buildQuestionDiv(qArr[j], j)
-            //console.log("each question:")
-            //console.log(qArr[j])
-            quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
-        }
-
-        let quizForm = document.createElement('form');
-        quizForm.id = 'submit-quiz'
-        let submitButton = document.createElement('input');
-        submitButton.type = 'submit';
-        submitButton.id = 'submit-button'
-        submitButton.value = 'Submit'
-        quizForm.appendChild(submitButton)
-        quizContainer.appendChild(quizForm)
-
-        quizForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-        })
-    })
-    //console.log(quizDiv)
-}
-
+// Fixes any special characters saved in db.json format
 function stringFixer(string){
-    return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'")
+    return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'").replace(/&atilde;/, 'ã')
 }
-
 
 // this function will handle building our question object into an html element
 // 
@@ -303,20 +241,21 @@ function buildQuestionDiv(q, index){
     let qDiv = document.createElement('div');
     qDiv.classList.add('question-container');
     let qH4 = document.createElement('h4');
-    let diffH4 = document.createElement('h3');
-    let catH4 = document.createElement('h3');
-    let questionText = document.createElement('h3');
+    let diffH3 = document.createElement('h3');
+    let catH3 = document.createElement('h3');
+    let qText = document.createElement('h3');
     qH4.textContent = `Question ${index+1}:`;
-    diffH4.textContent = `Difficulty: ${stringFixer(q.difficulty)}`;
-    catH4.textContent = stringFixer(q.category);
-    questionText.textContent = stringFixer(q.question);
+    qH4.classList.add('qHeader')
+    diffH3.textContent = `Difficulty: ${stringFixer(q.difficulty)}`;
+    catH3.textContent = stringFixer(q.category);
+    qText.textContent = stringFixer(q.question);
+    qText.classList.add('qText')
 
     qDiv.appendChild(qH4);
-    qDiv.appendChild(diffH4);
-    qDiv.appendChild(catH4);
-    qDiv.appendChild(questionText);
-    //qDiv.appendChild(document.createElement('br'));
-    let boxArr = [];
+    qDiv.appendChild(diffH3);
+    qDiv.appendChild(catH3);
+    qDiv.appendChild(qText);
+    let ansArr = []
     for(let i = 0; i < q.answers.length; i++){
         let ansDiv = document.createElement('div');
         ansDiv.classList.add('answer-container');
@@ -336,26 +275,110 @@ function buildQuestionDiv(q, index){
         ansDiv.appendChild(ansText);
 
         qDiv.appendChild(ansDiv);
-        boxArr.push(checkbox);
-        checkboxListener(boxArr);
+        // adding each answer container, including checkbox and text to array
+        ansArr.push(ansDiv)
     }
+    ansArr.forEach(selectListener);
+
     //console.log(qDiv);
     return qDiv;
 }
 
 // using array forEach function to add event listener per checkbox
-// will ensure 
-function checkboxListener(boxArr){
-    boxArr.forEach(box => {
-        box.addEventListener('change', (e) =>{
-            console.log(e.target.checked); 
-            boxArr.forEach(element => {
-                if(element !== box){
-                    element.checked = false;
+// will ensure other boxes get unchecked when one is checked
+function selectListener(ansDiv){
+    //console.log(ansDiv)
+    let box = ansDiv.querySelector('.check-box')
+    box.addEventListener('change', (e) =>{
+        //console.log(e.target.checked); 
+        boxArr.forEach(element => {
+            if(element !== box){
+                element.checked = false;
+            }
+        })
+    })
+    let selected = false;
+    let ansText = ansDiv.querySelector('.answer-text')
+    ansDiv.addEventListener('mouseover', (e) =>{
+        selected = true;
+        //console.log(this.selected)
+        ansText.style['background-color'] = "lightgreen";
+    })
+    ansDiv.addEventListener('mouseout', (e) => {
+        selected = false;
+        //console.log(this.selected)
+        ansText.style['background-color'] = "white";
+    })
+}
+
+
+// We will be creating a local array that will hold all the question data
+// This function will only be pulling data from the db and not changing
+// If needed, can add to this function to by transferring data back and forth,
+// such as saving the selected answer and/or if it was correctly selected
+function buildQuiz(quizCreated){
+    
+    return new Promise(resolve => {
+        fetch(`http://localhost:3000/questions`)
+        .then(res => res.json())
+        .then(data => {
+            //console.log(data)
+            return new Promise(function(resolve) {
+                let qArr = [];
+                for(let i = 0; i < data.length; i++)
+                {
+                    qArr.push(data[i]);
                 }
+                //console.log(qArr)
+                resolve(qArr)
             })
         })
-    });
+        .then(qArr => {
+            let quizContainer = document.getElementById("quiz-container");
+            //building new html block for each question
+            /*
+                Question: 1
+                Difficulty: Easy
+                Category: Sports
+                [ ] Example Answer 1
+                [✓] Example Answer 2
+                [ ] Example Answer 3
+                [ ] Example Answer 4
+                [Previous]      [Next]
+            */
+            if(quizCreated){
+                quizContainer.innerHTML = '';
+            }
+            //console.log("question arr when building:")
+            //console.log(qArr)
+            let qObjArr = []
+            for(let j = 0; j < qArr.length; j++){
+                //buildQuestionDiv(qArr[j], j)
+                //console.log("each question:")
+                //console.log(qArr[j])
+                quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
+            }
+
+            let quizForm = document.createElement('form');
+            quizForm.id = 'submit-quiz'
+            let submitButton = document.createElement('input');
+            submitButton.type = 'submit';
+            submitButton.id = 'submit-button'
+            submitButton.value = 'Submit'
+            quizForm.appendChild(submitButton)
+            quizContainer.appendChild(quizForm)
+
+            quizForm.addEventListener('submit', (e) => {
+                e.preventDefault()
+            })
+            resolve(qArr)
+        })
+    })
+    //console.log(quizDiv)
+}
+
+function handleQuiz(qArr){
+    console.log(qArr)
 }
 
 
