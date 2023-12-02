@@ -1,40 +1,16 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Video Games",
+      "category": "Entertainment: Cartoon &amp; Animations",
       "difficulty": "medium",
-      "question": "When was the video game &quot;P.A.M.E.L.A.&quot; released on Steam?",
+      "question": "What is the standard frame rate for animation?",
       "answers": [
-        "March 9, 2017",
-        "October 23, 1997",
-        "February 16, 2015",
-        "January 7, 2007"
+        "60 FPS",
+        "24 FPS",
+        "12 FPS",
+        "30 FPS"
       ],
       "id": 1
-    },
-    {
-      "category": "Entertainment: Film",
-      "difficulty": "easy",
-      "question": "The Queen song `A Kind Of Magic` is featured in which 1986 film?",
-      "answers": [
-        "Flash Gordon",
-        "Highlander",
-        "Howard the Duck",
-        "Labyrinth"
-      ],
-      "id": 2
-    },
-    {
-      "category": "Entertainment: Board Games",
-      "difficulty": "hard",
-      "question": "What is the world&#039;s oldest board game?",
-      "answers": [
-        "Chess",
-        "Senet",
-        "Go",
-        "Checkers"
-      ],
-      "id": 3
     }
   ]
 }

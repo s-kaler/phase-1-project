@@ -31,14 +31,13 @@ const init = () => {
             .then(fetchURL => handleFetch(fetchURL))
             .then(qArr => buildDB(qArr))
             .then(() => buildQuiz(quizCreated))
-            .then((qArr) => handleQuiz(qArr))
+            .then((res) => handleQuiz(res[0], res[1]))
             
             form.reset();
             return false;
         }
     });
     // used for example boxes only
-    //let boxArr = [].slice.call(document.getElementsByClassName('box'));
     //console.log(boxArr);
     //checkboxListener(boxArr);
 
@@ -277,8 +276,9 @@ function buildQuestionDiv(q, index){
         qDiv.appendChild(ansDiv);
         // adding each answer container, including checkbox and text to array
         ansArr.push(ansDiv)
+        
+        selectListener(ansDiv, q)
     }
-    ansArr.forEach(selectListener);
 
     //console.log(qDiv);
     return qDiv;
@@ -286,28 +286,40 @@ function buildQuestionDiv(q, index){
 
 // using array forEach function to add event listener per checkbox
 // will ensure other boxes get unchecked when one is checked
-function selectListener(ansDiv){
+function selectListener(ansDiv, q){
     //console.log(ansDiv)
+    let selected = false;
     let box = ansDiv.querySelector('.check-box')
+    let ansText = ansDiv.querySelector('.answer-text')
+    let boxes = ansDiv.parentNode.querySelectorAll('.check-box')
+
+    //let boxArr = [].slice.ansDiv.parentNode.getElementsByClassName('box'));
+    console.log(boxes)
+
     box.addEventListener('change', (e) =>{
         //console.log(e.target.checked); 
-        boxArr.forEach(element => {
+        boxes.forEach(element => {
             if(element !== box){
                 element.checked = false;
             }
         })
+        if(box.checked === true){
+            ansText.style['background-color'] = "lightgreen";
+            selected = true;
+        }
+        else{
+            ansText.style['background-color'] = "white";
+            selected = false;
+        }
     })
-    let selected = false;
-    let ansText = ansDiv.querySelector('.answer-text')
     ansDiv.addEventListener('mouseover', (e) =>{
-        selected = true;
-        //console.log(this.selected)
-        ansText.style['background-color'] = "lightgreen";
+        ansText.style['background-color'] = "lightyellow";
     })
     ansDiv.addEventListener('mouseout', (e) => {
-        selected = false;
-        //console.log(this.selected)
+        //console.log(box.checked)
+        //if(box.checked === false){
         ansText.style['background-color'] = "white";
+        //}
     })
 }
 
@@ -367,18 +379,24 @@ function buildQuiz(quizCreated){
             submitButton.value = 'Submit'
             quizForm.appendChild(submitButton)
             quizContainer.appendChild(quizForm)
-
-            quizForm.addEventListener('submit', (e) => {
-                e.preventDefault()
-            })
-            resolve(qArr)
+            
+            //return promise with array of question objects and the quiz container HTML element
+            resolve([qArr, quizContainer])
         })
     })
     //console.log(quizDiv)
 }
 
-function handleQuiz(qArr){
+// This function will handle the processing of all answered questions
+function handleQuiz(qArr, quizContainer){
     console.log(qArr)
+    console.log(quizContainer)
+    let quizForm = quizContainer.querySelector('#submit-quiz')
+    let submitButton = quizForm.querySelector('#submit-button')
+    quizForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        submitButton.disabled = true;
+    })
 }
 
 
