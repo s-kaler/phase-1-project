@@ -25,6 +25,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+    padding-bottom: 40px;
 }
 
 .question-container {
@@ -80,4 +81,10 @@ h3 {
 
 .change-question {
     font-size: 20px;
+}
+
+#submit-quiz {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

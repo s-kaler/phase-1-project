@@ -4,6 +4,8 @@ let dbURL = "https://opentdb.com/api.php?";
 
 const init = () => {
     let form = document.querySelector('#generate-form');
+    let generateButton = document.querySelector('#generate-button')
+    let qArr = [];
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let qNum = e.target["q-num"].value;
@@ -17,9 +19,16 @@ const init = () => {
             alert('Please enter a number between 1 and 100.')
         }
         else{
-            let fetchURL = buildQuizURL(qNum, difficulty, category)
-            //console.log(fetchURL);
+            //generateButton.disabled = true;
+            //let fetchURL = buildURL(qNum, difficulty, category)
+            
             clearDB()
+            .then(() => buildURL(qNum, difficulty, category))
+            .then(fetchURL => handleFetch(fetchURL))
+            .then(qArr => buildDB(qArr))
+            .then(() => buildQuiz())
+            
+            /*
             .then((result => {
                 console.log(result)
                 setTimeout(() => {
@@ -27,45 +36,54 @@ const init = () => {
                     .then((result2) => {
                         console.log(result2)
                         setTimeout(() => {
-                            buildQuiz()
+                            buildQuiz();
                         }, 1000);
                     })
                 }, 2000);
             }))
-            
+            */
+
+            //buildQuiz()
+
             form.reset();
+            return false;
         }
     });
-    
+    let boxArr = [].slice.call(document.getElementsByClassName('box'));
+    console.log(boxArr);
+    checkboxListener(boxArr);
 
 }
 
-function buildQuizURL(qNum, difficulty, category) {
-    //example db url 
-    //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
-    let qNumURL = `amount=${qNum}`;
-    let diffURL = '';
-    if(difficulty !== 'any'){
-        diffURL = `&difficulty=${difficulty}`;
-    }
-    let catURL = ''
-    if(category !== 'any'){
-        catURL = `&category=${category}`
-    }
-    //final db url will include the amount, difficulty, category, and will be multiple choice by default
-    //if difficulty or category are not chosen, they will be empty in the url
-    //this is what we will use in our fetch
-    let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
-    return newUrl;
+function buildURL(qNum, difficulty, category) {
+    return new Promise(resolve => {
+        //example db url 
+        //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
+        let qNumURL = `amount=${qNum}`;
+        let diffURL = '';
+        if(difficulty !== 'any'){
+            diffURL = `&difficulty=${difficulty}`;
+        }
+        let catURL = ''
+        if(category !== 'any'){
+            catURL = `&category=${category}`
+        }
+        //final db url will include the amount, difficulty, category, and will be multiple choice by default
+        //if difficulty or category are not chosen, they will be empty in the url
+        //this is what we will use in our fetch
+        let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
+        console.log(newUrl);
+        resolve(newUrl);
+    })
+    
 }
 
 // We will be clearing local db.json because we need to throw away possible old question data
 // and fill with new and variable amounts of questions
 function clearDB(){
-
     return new Promise(function(resolve) {
         //let idArr = [];
-        fetch(`http://localhost:3000/questions`)
+        fetch(`http://localhost:3000/questions/`)
         .then(res => res.json())
         .then(data => {
             return new Promise(function(resolve) {
@@ -79,14 +97,13 @@ function clearDB(){
                 }
                 resolve(newArr)
             })
-            
         })
         .then(idArr => {
             //console.log(idArr);
             for(let i = 0; i < idArr.length; i++){
                 //console.log('deleted');
                 //console.log(data[i].id)
-                //setTimeout(() => {
+                
                     fetch(`http://localhost:3000/questions/${idArr[i]}`, {
                     method: 'DELETE',
                     headers:
@@ -97,10 +114,11 @@ function clearDB(){
                     })
                     .catch(error => console.log("could not resolve: " + error))
                     console.log(`deleted id:${idArr[i]}`)
-                //}, 200);
+                
             }
             resolve("Deleted all items");
         })
+        //.catch(error => {alert("Local db.json server not running")})
     })
     
 }
@@ -112,7 +130,7 @@ function handleFetch(fetchURL){
         fetch(fetchURL)
         .then(res => res.json())
         .then(data => {    
-            //console.log(data);
+            console.log(data);
             //console.log(data['response_code']);
             if(data['response_code'] === '5'){
                 alert('Rate limited, please try again');
@@ -120,8 +138,11 @@ function handleFetch(fetchURL){
             else if(data['response_code'] === 0){
                 //console.log(data);
                 let fetchArr = data.results;
-                buildDB(fetchArr);  
-                resolve("generated db")
+                let qArr = [];
+                fetchArr.forEach(fetched => {
+                    qArr.push(buildQuestion(fetched))
+                }) 
+                resolve(qArr);
             }
         })
         
@@ -134,8 +155,8 @@ class questionObj {
         this.difficulty = difficulty;
         this.question = question;
         this.answers = answers;
-        this.correctAnswer = correctAnswer;
-        this.selectedAnswer = '';
+        this["correct_answer"] = correctAnswer;
+        this["selected_answer"] = '';
     }
     
 }
@@ -144,7 +165,7 @@ class questionObj {
    we will take this data and convert it to an object that is ready for our code
       "type": "multiple",
       "difficulty": "hard",
-      "category": "History",
+      "category": "History",p
       "question": "When did the French Revolution begin?",
       "correct_answer": "1789",
       "incorrect_answers": [
@@ -168,10 +189,22 @@ function shuffle(array) {
 
 // Building the local db with data gained from website API in a different format
 // so that we can use it locally in our own db.json and not make extra calls
-function buildDB(fetchArr){
-    for(let i = 0; i < fetchArr.length; i++){
-        let q = buildQuestion(fetchArr[i]);
-        //console.log(q);
+function buildDB(qArr){
+    return new Promise (resolve => {
+        console.log('POST fetchArr:')
+        console.log(qArr)
+        promArr = [];
+        qArr.forEach((q) => {
+            //console.log(q);
+            promArr.push(postQ(q))
+    })
+    Promise.all(promArr).then(res => resolve())
+    })
+
+}
+
+function postQ(q){
+    return new Promise(resolve => {
         fetch(`http://localhost:3000/questions/`, {
             method: 'POST',
             headers:
@@ -186,11 +219,16 @@ function buildDB(fetchArr){
             "answers": q.answers,
             "correct_answer": q.correctAnswer,
             "selected_answer": q.selectedAnswer
-            })  
+            })
         })
-    }
-    //return qArr;
+        .then(res => res.json())
+        .then(data => {
+            resolve(q)
+        })
+
+    })
 }
+
 
 // Building a question object that will be used to store onto our local db
 function buildQuestion(q) {
@@ -212,15 +250,16 @@ function buildQuiz(){
     fetch(`http://localhost:3000/questions`)
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         return new Promise(function(resolve) {
             let qArr = [];
             for(let i = 0; i < data.length; i++)
             {
                 qArr.push(data[i]);
             }
+            console.log(qArr)
             resolve(qArr)
         })
-        
     })
     .then(qArr => {
         let quizContainer = document.getElementById("quiz-container");
@@ -237,17 +276,35 @@ function buildQuiz(){
         */
         //let quizDiv = document.getElementById('quiz-container');
         console.log("question arr when building:")
-        console.log(qArr)
+        //console.log(qArr)
+        let qObjArr = []
         for(let j = 0; j < qArr.length; j++){
             //buildQuestionDiv(qArr[j], j)
-            console.log("each question:")
-            console.log(qArr[j])
-
+            //console.log("each question:")
+            //console.log(qArr[j])
             quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
         }
+
+        let quizForm = document.createElement('form');
+        quizForm.id = 'submit-quiz'
+        let submitButton = document.createElement('input');
+        submitButton.type = 'submit';
+        submitButton.id = 'submit-button'
+        submitButton.value = 'Submit'
+        quizForm.appendChild(submitButton)
+        quizContainer.appendChild(quizForm)
+
+        quizForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+        })
     })
     //console.log(quizDiv)
 }
+
+function stringFixer(string){
+    return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'")
+}
+
 
 // this function will handle building our question object into an html element
 // 
@@ -259,9 +316,9 @@ function buildQuestionDiv(q, index){
     let catH4 = document.createElement('h3');
     let questionText = document.createElement('h3');
     qH4.textContent = `Question ${index+1}:`;
-    diffH4.textContent = `Difficulty: ${q.difficulty}`;
-    catH4.textContent = q.category;
-    questionText.textContent = q.question;
+    diffH4.textContent = `Difficulty: ${stringFixer(q.difficulty)}`;
+    catH4.textContent = stringFixer(q.category);
+    questionText.textContent = stringFixer(q.question);
 
     qDiv.appendChild(qH4);
     qDiv.appendChild(diffH4);
@@ -282,7 +339,7 @@ function buildQuestionDiv(q, index){
 
         let ansText = document.createElement('div');
         ansText.classList.add('answer-text');
-        ansText.textContent = q.answers[i];
+        ansText.textContent = stringFixer(q.answers[i]);
 
         ansDiv.appendChild(checkDiv);
         ansDiv.appendChild(ansText);
@@ -291,7 +348,7 @@ function buildQuestionDiv(q, index){
         boxArr.push(checkbox);
         checkboxListener(boxArr);
     }
-    console.log(qDiv);
+    //console.log(qDiv);
     return qDiv;
 }
 
@@ -300,12 +357,12 @@ function buildQuestionDiv(q, index){
 function checkboxListener(boxArr){
     boxArr.forEach(box => {
         box.addEventListener('change', (e) =>{
-            console.log(e.target.checked);
-                boxArr.forEach(element => {
+            console.log(e.target.checked); 
+            boxArr.forEach(element => {
+                if(element !== box){
                     element.checked = false;
-                })
-                box.checked = true
-            
+                }
+            })
         })
     });
 }

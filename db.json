@@ -1,18 +1,124 @@
 {
   "questions": [
     {
+      "category": "Entertainment: Musicals &amp; Theatres",
+      "difficulty": "hard",
+      "question": "In Les Mis&eacute;rables, who is Prison Code 24601?",
+      "answers": [
+        "Jean Valjean",
+        "Marius Pontmercy",
+        "Javert",
+        "Jean Claude Van Damme"
+      ],
+      "id": 1
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "In &quot;Resident Evil 2&quot;, what is Leon Kennedy&#039;s middle name?",
+      "answers": [
+        "Sam",
+        "Simon",
+        "Shaun",
+        "Scott"
+      ],
+      "id": 2
+    },
+    {
+      "category": "Entertainment: Television",
+      "difficulty": "hard",
+      "question": "Who played the sun baby in the original run of Teletubbies?",
+      "answers": [
+        "Jessica Smith",
+        "Lisa Brockwell",
+        "Sue Monroe",
+        "Pui Fan Lee"
+      ],
+      "id": 3
+    },
+    {
+      "category": "Entertainment: Comics",
+      "difficulty": "hard",
+      "question": "In the &quot;Archie&quot; comics, who was Jughead&#039;s first girlfriend?",
+      "answers": [
+        "Joani",
+        "Margret",
+        "Ethel",
+        "Debbi"
+      ],
+      "id": 4
+    },
+    {
+      "category": "Science: Computers",
+      "difficulty": "medium",
+      "question": "All of the following programs are classified as raster graphics editors EXCEPT:",
+      "answers": [
+        "Inkscape",
+        "Adobe Photoshop",
+        "GIMP",
+        "Paint.NET"
+      ],
+      "id": 5
+    },
+    {
       "category": "Entertainment: Music",
       "difficulty": "easy",
-      "question": "Which band recorded the album &quot;Parallel Lines&quot;?",
+      "question": "Who is the lead singer of the British pop rock band Coldplay?",
       "answers": [
-        "Paramore",
-        "Blondie",
-        "Coldplay",
-        "The Police"
+        "Jonny Buckland",
+        "Guy Berryman",
+        "Will Champion",
+        "Chris Martin"
       ],
-      "correct_answer": "Blondie",
-      "selected_answer": "",
-      "id": 1
+      "id": 6
+    },
+    {
+      "category": "Sports",
+      "difficulty": "medium",
+      "question": "Which Formula One driver was nicknamed &#039;The Professor&#039;?",
+      "answers": [
+        "Alain Prost",
+        "Ayrton Senna",
+        "Emerson Fittipaldi",
+        "Niki Lauda"
+      ],
+      "id": 7
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "How tall is the Burj Khalifa?",
+      "answers": [
+        "3,024 ft",
+        "2,717 ft",
+        "2,722 ft",
+        "2,546 ft"
+      ],
+      "id": 8
+    },
+    {
+      "category": "Geography",
+      "difficulty": "medium",
+      "question": "The historical city Timbuktu is located in which West African country?",
+      "answers": [
+        "Mali",
+        "Burkina Faso",
+        "Niger",
+        "Senegal"
+      ],
+      "id": 9
+    },
+    {
+      "category": "Entertainment: Books",
+      "difficulty": "medium",
+      "question": "In Terry Pratchett&#039;s Discworld novel &#039;Wyrd Sisters&#039;, which of these are not one of the three main witches?",
+      "answers": [
+        "Nanny Ogg",
+        "Magrat Garlick",
+        "Granny Weatherwax",
+        "Winny Hathersham"
+      ],
+      "id": 10
     }
   ]
 }
