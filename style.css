@@ -17,6 +17,7 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 #quiz-container {
@@ -25,6 +26,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+    padding-top: 10px;
     padding-bottom: 40px;
 }
 
@@ -96,5 +98,9 @@ h3 {
 #submit-quiz {
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+
+.score-display {
     text-align: center;
 }

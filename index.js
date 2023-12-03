@@ -467,14 +467,22 @@ function handleQuiz(qArr, quizContainer){
         buildQuiz(qArr, true)
         .then(() =>{
             quizContainer.innerHTML = ''
+            let scoreHeader = document.createElement('h4');
+            scoreHeader.id = 'score';
+            scoreHeader.classList.add('score-display')
+            scoreHeader.textContent = `Score: ${score}\/${qArr.length}`;
+            quizContainer.appendChild(scoreHeader)
+            if(score === qArr.length){
+                let congrats = document.createElement('h3')
+                congrats.textContent = 'Congrats, you got a perfect score!'
+                congrats.classList.add('score-display')
+                quizContainer.appendChild(congrats)
+            }
+            
             for(let j = 0; j < qArr.length; j++){
                 quizContainer.appendChild(buildQuestionDiv(qArr[j], j, false));
             }
-            let scoreHeader = document.createElement('h4');
-            scoreHeader.id = 'score';
-            scoreHeader.textContent = `Score: ${score}\/${qArr.length}`;
             //console.log(scoreHeader)
-            quizContainer.appendChild(scoreHeader)
         })
         
     })

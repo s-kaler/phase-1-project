@@ -1,16 +1,16 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Music",
-      "difficulty": "hard",
-      "question": "Who had a 1981 hit with the song &quot;Japanese Boy&quot;?",
+      "category": "Sports",
+      "difficulty": "easy",
+      "question": "Who won the 2015 Formula 1 World Championship?",
       "answers": [
-        "Madonna",
-        "Sandra",
-        "Aneka",
-        "Toyah"
+        "Sebastian Vettel",
+        "Jenson Button",
+        "Lewis Hamilton",
+        "Nico Rosberg"
       ],
-      "correct_answer": "Aneka",
+      "correct_answer": "Lewis Hamilton",
       "selected_answer": "",
       "id": 1
     }
