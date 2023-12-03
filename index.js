@@ -25,7 +25,6 @@ const init = () => {
             //generateButton.disabled = true;
             //let fetchURL = buildURL(qNum, difficulty, category)
             quizCreated = true;
-            let generatedArr = [];
             clearDB()
             .then(() => buildURL(qNum, difficulty, category))
             .then(fetchURL => handleFetch(fetchURL))
@@ -236,7 +235,7 @@ function stringFixer(string){
 
 // this function will handle building our question object into an html element
 // 
-function buildQuestionDiv(q, index){
+function buildQuestionDiv(q, index, generating){
     let qDiv = document.createElement('div');
     qDiv.classList.add('question-container');
     let qH4 = document.createElement('h4');
@@ -277,8 +276,17 @@ function buildQuestionDiv(q, index){
         // adding each answer container, including checkbox and text to array
         ansArr.push(ansDiv)
     }
+   
     for(let i = 0; i < ansArr.length; i++){
-        selectListener(ansArr[i], q)
+        if(generating){
+            //will add a listener to newly formed questions
+            selectListener(ansArr[i], q)
+        }
+        else{
+            //will add styling to already answered questions
+            questionResults(ansArr[i], q)
+        }
+        
     }
     //console.log(qDiv);
     return qDiv;
@@ -288,14 +296,14 @@ function buildQuestionDiv(q, index){
 // will ensure other boxes get unchecked when one is checked
 function selectListener(ansDiv, q){
     //console.log(ansDiv)
-    let selected = false;
     let box = ansDiv.querySelector('input')
     let ansText = ansDiv.querySelector('.answer-text')
     let boxes = ansDiv.parentNode.querySelectorAll('input')
     let answers = ansDiv.parentNode.querySelectorAll('.answer-text')
-    console.log(boxes)
-    console.log(box.checked)
+    //console.log(boxes)
+    //console.log(box.checked)
 
+    // event listener for boxes when they are changed
     box.addEventListener('change', (e) =>{
         //console.log(e.target.checked); 
         boxes.forEach(element => {
@@ -312,14 +320,15 @@ function selectListener(ansDiv, q){
         })
         if(box.checked === true){
             ansText.style['background-color'] = "lightgreen";
-            selected = true;
+            q['selected_answer'] = ansText.textContent;
+            //console.log(q['selected_answer']);
         }
         else{
             ansText.style['background-color'] = "white";
-            selected = false;
         }
     })
 
+    // event listeners for highlighting and selecting answers by clicking on them
     ansDiv.addEventListener('mouseover', (e) =>{
         if(box.checked === false){
             ansText.style['background-color'] = "lightyellow";
@@ -330,11 +339,49 @@ function selectListener(ansDiv, q){
         if(box.checked === false){
             ansText.style['background-color'] = "white";
         }
-        
+    })
+    ansDiv.addEventListener('click', (e) => {
+        boxes.forEach(element => {
+            if(element !== box){
+                element.checked = false;
+            }
+        })
+        answers.forEach(element => {
+            element.style['background-color'] = "white";
+        })
+        box.checked = true;
+        ansText.style['background-color'] = "lightgreen";
+        q['selected_answer'] = ansText.textContent;
+        //console.log(q['selected_answer']);
     })
 
 }
 
+// will determine styling for results shown after quiz has been submitted
+function questionResults(ansDiv, q){
+    let boxes = ansDiv.parentNode.querySelectorAll('input')
+    let answers = ansDiv.parentNode.querySelectorAll('.answer-text')
+    let selected = stringFixer(q['selected_answer'])
+    let correct = selected === stringFixer(q['correct_answer'])
+    for(let i = 0; i < answers.length; i++) {
+        if(answers[i].textContent === stringFixer(q['correct_answer'])){
+            answers[i].style['background-color'] = "lightgreen";
+        }
+        if(answers[i].textContent === selected){
+            if(correct){
+                answers[i].style['background-color'] = "lightgreen";
+            }
+            else{
+                answers[i].style['background-color'] = "red";
+            }
+            boxes[i].checked = true;
+        }
+        else{
+            boxes[i].checked = false;
+        }
+        boxes[i].disabled = true;
+    }
+}
 
 // We will be creating a local array that will hold all the question data
 // This function will only be pulling data from the db and not changing
@@ -375,12 +422,12 @@ function buildQuiz(quizCreated){
             }
             //console.log("question arr when building:")
             //console.log(qArr)
-            let qObjArr = []
+            //let qObjArr = []
             for(let j = 0; j < qArr.length; j++){
                 //buildQuestionDiv(qArr[j], j)
                 //console.log("each question:")
                 //console.log(qArr[j])
-                quizContainer.appendChild(buildQuestionDiv(qArr[j], j));
+                quizContainer.appendChild(buildQuestionDiv(qArr[j], j, true));
             }
 
             let quizForm = document.createElement('form');
@@ -399,16 +446,37 @@ function buildQuiz(quizCreated){
     //console.log(quizDiv)
 }
 
+
 // This function will handle the processing of all answered questions
 function handleQuiz(qArr, quizContainer){
     //console.log(qArr)
     //console.log(quizContainer)
     let quizForm = quizContainer.querySelector('#submit-quiz')
     let submitButton = quizForm.querySelector('#submit-button')
+    let score = 0;
     quizForm.addEventListener('submit', (e) => {
         e.preventDefault()
         submitButton.disabled = true;
-
+        qArr.forEach(q => {
+            if(q['selected_answer'] === stringFixer(q['correct_answer'])){
+                score++;
+            }
+        });
+        //console.log(`score:${score}`);
+        //console.log(quizContainer)
+        buildQuiz(qArr, true)
+        .then(() =>{
+            quizContainer.innerHTML = ''
+            for(let j = 0; j < qArr.length; j++){
+                quizContainer.appendChild(buildQuestionDiv(qArr[j], j, false));
+            }
+            let scoreHeader = document.createElement('h4');
+            scoreHeader.id = 'score';
+            scoreHeader.textContent = `Score: ${score}\/${qArr.length}`;
+            //console.log(scoreHeader)
+            quizContainer.appendChild(scoreHeader)
+        })
+        
     })
 }
 

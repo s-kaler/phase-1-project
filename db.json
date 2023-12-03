@@ -1,144 +1,18 @@
 {
   "questions": [
     {
-      "category": "General Knowledge",
-      "difficulty": "easy",
-      "question": "What was the nickname given to the Hughes H-4 Hercules, a heavy transport flying boat which achieved flight in 1947?",
+      "category": "Entertainment: Music",
+      "difficulty": "hard",
+      "question": "Who had a 1981 hit with the song &quot;Japanese Boy&quot;?",
       "answers": [
-        "Spruce Goose",
-        "Noah&#039;s Ark",
-        "Fat Man",
-        "Trojan Horse"
+        "Madonna",
+        "Sandra",
+        "Aneka",
+        "Toyah"
       ],
-      "correct_answer": "Spruce Goose",
+      "correct_answer": "Aneka",
       "selected_answer": "",
       "id": 1
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "Directly between the Washington Monument and the Reflecting Pool is a memorial to which war?",
-      "answers": [
-        "Vietnam War",
-        "American Revolutionary War",
-        "American Civil War",
-        "World War II"
-      ],
-      "correct_answer": "World War II",
-      "selected_answer": "",
-      "id": 2
-    },
-    {
-      "category": "History",
-      "difficulty": "medium",
-      "question": "In what year did the Berlin Wall fall?",
-      "answers": [
-        "1989",
-        "1991",
-        "1993",
-        "1987"
-      ],
-      "correct_answer": "1989",
-      "selected_answer": "",
-      "id": 3
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "medium",
-      "question": "What was the destination of the missing flight MH370?",
-      "answers": [
-        "Kuala Lumpur",
-        "Beijing",
-        "Singapore",
-        "Tokyo"
-      ],
-      "correct_answer": "Beijing",
-      "selected_answer": "",
-      "id": 4
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "easy",
-      "question": "Which Pokemon generation did the fan-named &quot;Masuda Method&quot; first appear in? ",
-      "answers": [
-        "Ruby/Sapphire",
-        "Diamond/Pearl",
-        "Black/White",
-        "X/Y"
-      ],
-      "correct_answer": "Diamond/Pearl",
-      "selected_answer": "",
-      "id": 5
-    },
-    {
-      "category": "Entertainment: Board Games",
-      "difficulty": "easy",
-      "question": "Which one of these is not a real game in the Dungeons &amp; Dragons series?",
-      "answers": [
-        "Advanced Dungeons &amp; Dragons",
-        "Extreme Dungeons &amp; Dragons",
-        "Dungeons &amp; Dragons 3.5th edition",
-        "Advanced Dungeons &amp; Dragons 2nd edition"
-      ],
-      "correct_answer": "Extreme Dungeons &amp; Dragons",
-      "selected_answer": "",
-      "id": 6
-    },
-    {
-      "category": "Geography",
-      "difficulty": "easy",
-      "question": "How many federal states does Germany have?",
-      "answers": [
-        "13",
-        "16",
-        "25",
-        "32"
-      ],
-      "correct_answer": "16",
-      "selected_answer": "",
-      "id": 7
-    },
-    {
-      "category": "General Knowledge",
-      "difficulty": "easy",
-      "question": "In which fast food chain can you order a Jamocha Shake?",
-      "answers": [
-        "Arby&#039;s",
-        "Wendy&#039;s",
-        "Burger King",
-        "McDonald&#039;s"
-      ],
-      "correct_answer": "Arby&#039;s",
-      "selected_answer": "",
-      "id": 8
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "hard",
-      "question": "Which character, in the game &quot;Morenatsu&quot;, has the most possible endings to their route, at a total of four different endings?",
-      "answers": [
-        "Soutarou Touno",
-        "Torahiko Ooshima",
-        "Shin Kuroi",
-        "Kouya Aotsuki"
-      ],
-      "correct_answer": "Shin Kuroi",
-      "selected_answer": "",
-      "id": 9
-    },
-    {
-      "category": "Geography",
-      "difficulty": "hard",
-      "question": "Which of these is NOT a real tectonic plate?",
-      "answers": [
-        "Eurasian Plate",
-        "Atlantic Plate",
-        "North American Plate",
-        "Nazca Plate"
-      ],
-      "correct_answer": "Atlantic Plate",
-      "selected_answer": "",
-      "id": 10
     }
   ]
 }
