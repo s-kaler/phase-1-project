@@ -446,7 +446,6 @@ function buildQuiz(quizCreated){
     //console.log(quizDiv)
 }
 
-
 // This function will handle the processing of all answered questions
 function handleQuiz(qArr, quizContainer){
     //console.log(qArr)
@@ -487,6 +486,5 @@ function handleQuiz(qArr, quizContainer){
         
     })
 }
-
 
 document.addEventListener("DOMContentLoaded", init);

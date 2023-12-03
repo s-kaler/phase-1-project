@@ -1,1 +1,11 @@
 # phase-1-project
+
+In this project, the task was to create a frontend using JavaScript, HTML, and CSS in a Single Page Application(SPA).
+
+One of the requirements was to acccess an API that returns at least 5 objects having at least 3 attributes. The API from Open Trivia DB (https://opentdb.com/)has an extensive database of questions and will even generate a random set of questions given their link generator. In this app, the user can select how many questions they want in their quiz from 1 to 100 questions, with a choice of difficulty and a choice of category. The user's choices will be used to create a new link that will generate a list of question objects. The question objects themselves have different attributes, including the question itself, answers, difficulty, and category. This app will take the API request and save it locally to a db.json file, to persist interactivity. The Open Trivia API requests will actually randomize our question objects every few seconds every time a link is generated, so the data needs to be saved in order to not lose it.
+
+Another requirement was that the app must run on a single page, so using event listeners, the DOM is manipulated to display a new quiz and its results on the same page. 3 event listeners were the minimum required and this app uses the form 'submit', 'click', 'change', 'mouseover', and 'mouseout' events to select answers and show results.
+
+The object data is be saved in a local db.json, which required the use of fetch requests and ensuring that everything was working accordingly, the app uses asnychronous functions. Whenever the object data needed to be accessed or manipulated, array iteration functions were used with callback functions. An example would be adding an event listener to each answer that might be highlighted or selected.
+
+A known issue is that when running json-server on our local db.json, be careful not to use '--watch', as it will reload the db.json and duplicate fetch requests, which will eventually shut down the server. This will happen frequently due to use of loops when sending POST or DELETE requests to the local db.json and the app cannot function properly.
