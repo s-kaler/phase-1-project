@@ -1,18 +1,704 @@
 {
   "questions": [
     {
-      "category": "Sports",
-      "difficulty": "easy",
-      "question": "Who won the 2015 Formula 1 World Championship?",
+      "category": "Science: Computers",
+      "difficulty": "medium",
+      "question": "Which of these is the name for the failed key escrow device introduced by the National Security Agency in 1993?",
       "answers": [
-        "Sebastian Vettel",
-        "Jenson Button",
-        "Lewis Hamilton",
-        "Nico Rosberg"
+        "Skipjack",
+        "Nautilus",
+        "Enigma Machine",
+        "Clipper Chip"
       ],
-      "correct_answer": "Lewis Hamilton",
+      "correct_answer": "Clipper Chip",
       "selected_answer": "",
       "id": 1
+    },
+    {
+      "category": "Entertainment: Books",
+      "difficulty": "easy",
+      "question": "Who wrote the novel &#039;Fear And Loathing In Las Vegas&#039;?",
+      "answers": [
+        "F. Scott Fitzgerald",
+        "Henry Miller",
+        "William S. Burroughs",
+        "Hunter S. Thompson"
+      ],
+      "correct_answer": "Hunter S. Thompson",
+      "selected_answer": "",
+      "id": 2
+    },
+    {
+      "category": "History",
+      "difficulty": "medium",
+      "question": "Which of these 1900s tanks were designed and built BEFORE the others?",
+      "answers": [
+        "Renault FT",
+        "Cromwell ",
+        " Panzer IV",
+        "M4 Sherman"
+      ],
+      "correct_answer": "Renault FT",
+      "selected_answer": "",
+      "id": 3
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "easy",
+      "question": "What is the protagonist&#039;s title given by the demons in DOOM (2016)?",
+      "answers": [
+        "Doom Marine",
+        "Doom Slayer",
+        "Doom Reaper",
+        "Doom Guy"
+      ],
+      "correct_answer": "Doom Slayer",
+      "selected_answer": "",
+      "id": 4
+    },
+    {
+      "category": "Science: Gadgets",
+      "difficulty": "medium",
+      "question": "Which company designed the &quot;Betamax&quot; video cassette format?",
+      "answers": [
+        "Fujitsu",
+        "Sony",
+        "Panasonic",
+        "LG"
+      ],
+      "correct_answer": "Sony",
+      "selected_answer": "",
+      "id": 5
+    },
+    {
+      "category": "Animals",
+      "difficulty": "medium",
+      "question": "For what reason would a spotted hyena &quot;laugh&quot;?",
+      "answers": [
+        "Excitement",
+        "Nervousness",
+        "Aggression",
+        "Exhaustion"
+      ],
+      "correct_answer": "Nervousness",
+      "selected_answer": "",
+      "id": 6
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "hard",
+      "question": "Which Kingdom Hearts game featured the cast of &quot;The World Ends With You&quot;?",
+      "answers": [
+        "Birth By Sleep",
+        "365/2 Days",
+        "Re:Chain of Memories",
+        "Dream Drop Distance"
+      ],
+      "correct_answer": "Dream Drop Distance",
+      "selected_answer": "",
+      "id": 7
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "This weapon in Counter-Strike: Global Offensive does not exist in real life.",
+      "answers": [
+        "AWP",
+        "M4A4",
+        "MP9",
+        "M4A1"
+      ],
+      "correct_answer": "M4A4",
+      "selected_answer": "",
+      "id": 8
+    },
+    {
+      "category": "History",
+      "difficulty": "easy",
+      "question": "Which famous world leader is famed for the saying, &quot;Let them eat cake&quot;, yet is rumored that he/she never said it at all?",
+      "answers": [
+        "Elizabeth I",
+        "Czar Nicholas II",
+        "Henry VIII",
+        "Marie Antoinette"
+      ],
+      "correct_answer": "Marie Antoinette",
+      "selected_answer": "",
+      "id": 9
+    },
+    {
+      "category": "Vehicles",
+      "difficulty": "easy",
+      "question": "The LS2 engine is how many cubic inches?",
+      "answers": [
+        "376",
+        "402",
+        "364",
+        "346"
+      ],
+      "correct_answer": "364",
+      "selected_answer": "",
+      "id": 10
+    },
+    {
+      "category": "Animals",
+      "difficulty": "hard",
+      "question": "What scientific family does the Aardwolf belong to?",
+      "answers": [
+        "Eupleridae",
+        "Felidae",
+        "Hyaenidae",
+        "Canidae"
+      ],
+      "correct_answer": "Hyaenidae",
+      "selected_answer": "",
+      "id": 11
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "Which of the following Copy Abilities was only featured in &quot;Kirby &amp; The Amazing Mirror&quot;?",
+      "answers": [
+        "Smash",
+        "Magic",
+        "Missile",
+        "Mini"
+      ],
+      "correct_answer": "Mini",
+      "selected_answer": "",
+      "id": 12
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "medium",
+      "question": "In a 1994 CBS interview, Microsoft co-founder Bill Gates performed what unusual trick on camera?",
+      "answers": [
+        "Jumping backwards over a desk",
+        "Standing on his head",
+        "Typing on a keyboard during a handstand",
+        "Jumping over an office chair"
+      ],
+      "correct_answer": "Jumping over an office chair",
+      "selected_answer": "",
+      "id": 13
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "How many games are there in the &quot;Colony Wars&quot; series for the PlayStation?",
+      "answers": [
+        "2",
+        "5",
+        "3",
+        "4"
+      ],
+      "correct_answer": "3",
+      "selected_answer": "",
+      "id": 14
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Red Vines is a brand of what type of candy?",
+      "answers": [
+        "Lollipop",
+        "Chocolate",
+        "Bubblegum",
+        "Licorice"
+      ],
+      "correct_answer": "Licorice",
+      "selected_answer": "",
+      "id": 15
+    },
+    {
+      "category": "Entertainment: Film",
+      "difficulty": "medium",
+      "question": "Which movie of film director Stanley Kubrick is known to be an adaptation of a Stephen King novel?",
+      "answers": [
+        "The Shining",
+        "Eyes Wide Shut",
+        " Dr. Strangelove ",
+        "2001: A Space Odyssey"
+      ],
+      "correct_answer": "The Shining",
+      "selected_answer": "",
+      "id": 16
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "What video game genre were the original Warcraft games?",
+      "answers": [
+        "RTS (Real Time Strategy)",
+        "MMO (Massively Multiplayer Online)",
+        "TBS (Turn Based Strategy)",
+        "RPG (Role Playing Game)"
+      ],
+      "correct_answer": "RTS (Real Time Strategy)",
+      "selected_answer": "",
+      "id": 17
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "hard",
+      "question": "In Left 4 Dead, what is the character Bill&#039;s last name?",
+      "answers": [
+        "Stevenson",
+        "Overbeck",
+        "Roberts",
+        "Fish"
+      ],
+      "correct_answer": "Overbeck",
+      "selected_answer": "",
+      "id": 18
+    },
+    {
+      "category": "Science: Gadgets",
+      "difficulty": "medium",
+      "question": "Out of all of the NASA Space Shuttles, which 2 have been destroyed in disasters?",
+      "answers": [
+        "Enterprise and Atlantis",
+        "Discovery and Endeavour",
+        "Challenger and Columbia",
+        "None of the Above"
+      ],
+      "correct_answer": "Challenger and Columbia",
+      "selected_answer": "",
+      "id": 19
+    },
+    {
+      "category": "Animals",
+      "difficulty": "hard",
+      "question": "How many known living species of hyenas are there?",
+      "answers": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "correct_answer": "4",
+      "selected_answer": "",
+      "id": 20
+    },
+    {
+      "category": "Sports",
+      "difficulty": "easy",
+      "question": "Which year did Jenson Button won his first ever Formula One World Drivers&#039; Championship?",
+      "answers": [
+        "2009",
+        "2010",
+        "2007",
+        "2006"
+      ],
+      "correct_answer": "2009",
+      "selected_answer": "",
+      "id": 21
+    },
+    {
+      "category": "Entertainment: Film",
+      "difficulty": "medium",
+      "question": "Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?",
+      "answers": [
+        "Shutter Island",
+        "Inception",
+        "The Revenant",
+        "The Wolf Of Wall Street"
+      ],
+      "correct_answer": "The Revenant",
+      "selected_answer": "",
+      "id": 22
+    },
+    {
+      "category": "Sports",
+      "difficulty": "medium",
+      "question": "Which portuguese island is soccer player Cristiano Ronaldo from?",
+      "answers": [
+        "Porto Santo",
+        "Terceira",
+        "Santa Maria",
+        "Madeira"
+      ],
+      "correct_answer": "Madeira",
+      "selected_answer": "",
+      "id": 23
+    },
+    {
+      "category": "Animals",
+      "difficulty": "hard",
+      "question": "Which of the following is another name for the &quot;Poecilotheria Metallica Tarantula&quot;?",
+      "answers": [
+        "Gooty",
+        "Silver Stripe",
+        "Woebegone",
+        "Hopper"
+      ],
+      "correct_answer": "Gooty",
+      "selected_answer": "",
+      "id": 24
+    },
+    {
+      "category": "Science: Gadgets",
+      "difficulty": "medium",
+      "question": "What is the most significant side venture the popular firearms company, Remington, has pursued?",
+      "answers": [
+        "Blenders",
+        "Ceiling Fans",
+        "Typewriters",
+        "Door Knobs"
+      ],
+      "correct_answer": "Typewriters",
+      "selected_answer": "",
+      "id": 25
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "hard",
+      "question": "In the anime Initial D, how does Takumi Fujiwara describe a drift?",
+      "answers": [
+        "&#039;. . . the front tires slide so the car won&#039;t face the inside&#039;",
+        "&#039;. . . you turn a lot&#039;",
+        "&#039;. . . the wheels lose traction, making the car slide sideways&#039;",
+        "&#039;. . . the car oversteers through a curve, causing it to turn faster&#039;"
+      ],
+      "correct_answer": "&#039;. . . the front tires slide so the car won&#039;t face the inside&#039;",
+      "selected_answer": "",
+      "id": 26
+    },
+    {
+      "category": "Entertainment: Cartoon &amp; Animations",
+      "difficulty": "easy",
+      "question": "Who created the Cartoon Network series &quot;Adventure Time&quot;?",
+      "answers": [
+        "Ben Bocquelet",
+        "Rebecca Sugar",
+        "J. G. Quintel",
+        "Pendleton Ward"
+      ],
+      "correct_answer": "Pendleton Ward",
+      "selected_answer": "",
+      "id": 27
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "Which sign of the zodiac is represented by the Crab?",
+      "answers": [
+        "Virgo",
+        "Cancer",
+        "Sagittarius",
+        "Libra"
+      ],
+      "correct_answer": "Cancer",
+      "selected_answer": "",
+      "id": 28
+    },
+    {
+      "category": "Entertainment: Music",
+      "difficulty": "medium",
+      "question": "Who is the primary lyricist for Canadian progressive rock band Rush?",
+      "answers": [
+        "Alex Lifeson",
+        "Geddy Lee",
+        "Neil Peart",
+        "John Rutsey"
+      ],
+      "correct_answer": "Neil Peart",
+      "selected_answer": "",
+      "id": 29
+    },
+    {
+      "category": "Science &amp; Nature",
+      "difficulty": "easy",
+      "question": "How many planets are in our Solar System?",
+      "answers": [
+        "Eight",
+        "Nine",
+        "Ten",
+        "Seven"
+      ],
+      "correct_answer": "Eight",
+      "selected_answer": "",
+      "id": 30
+    },
+    {
+      "category": "Sports",
+      "difficulty": "hard",
+      "question": "Which player &quot;kung-fu kicked&quot; a Crystal Palace fan in January 1995?",
+      "answers": [
+        "Eric Cantona",
+        "Mark Hughes",
+        "David Seamen",
+        "Ashley Cole"
+      ],
+      "correct_answer": "Eric Cantona",
+      "selected_answer": "",
+      "id": 31
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "easy",
+      "question": "How many times do you fight Gilgamesh in &quot;Final Fantasy 5&quot;?",
+      "answers": [
+        "5",
+        "3",
+        "6",
+        "4"
+      ],
+      "correct_answer": "6",
+      "selected_answer": "",
+      "id": 32
+    },
+    {
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "question": "The Flag of the European Union has how many stars on it?",
+      "answers": [
+        "16",
+        "12",
+        "10",
+        "14"
+      ],
+      "correct_answer": "12",
+      "selected_answer": "",
+      "id": 33
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "What type of genre is the controversial 2015 game &quot;Hatred&quot;?",
+      "answers": [
+        "MMORPG",
+        "Point &amp; Click",
+        "Shoot &#039;Em Up",
+        "Simulation"
+      ],
+      "correct_answer": "Shoot &#039;Em Up",
+      "selected_answer": "",
+      "id": 34
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "hard",
+      "question": "What is the last line muttered in the anime film &quot;The End of Evangelion&quot;?",
+      "answers": [
+        "&quot;Goddammit, Shinji.&quot;",
+        "&quot;Idiot, I won&#039;t let you kill me!&quot;",
+        "&quot;How disgusting.&quot;",
+        "&quot;Nothing.&quot;"
+      ],
+      "correct_answer": "&quot;How disgusting.&quot;",
+      "selected_answer": "",
+      "id": 35
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "difficulty": "medium",
+      "question": "In what year was the card game Magic: the Gathering first introduced?",
+      "answers": [
+        "1998",
+        "1993",
+        "1987",
+        "2003"
+      ],
+      "correct_answer": "1993",
+      "selected_answer": "",
+      "id": 36
+    },
+    {
+      "category": "Entertainment: Books",
+      "difficulty": "easy",
+      "question": "What was the name of Captain Nemo&#039;s submarine in &quot;20,000 Leagues Under the Sea&quot;?",
+      "answers": [
+        "The Neptune",
+        "The Nautilus",
+        "The Atlantis",
+        "The Poseidon  "
+      ],
+      "correct_answer": "The Nautilus",
+      "selected_answer": "",
+      "id": 37
+    },
+    {
+      "category": "Entertainment: Comics",
+      "difficulty": "medium",
+      "question": "What is the real name of the &quot;Master Of Magnetism&quot; Magneto?",
+      "answers": [
+        "Pietro Maximoff",
+        "Max Eisenhardt",
+        "Johann Schmidt",
+        "Charles Xavier"
+      ],
+      "correct_answer": "Max Eisenhardt",
+      "selected_answer": "",
+      "id": 38
+    },
+    {
+      "category": "Geography",
+      "difficulty": "easy",
+      "question": "Which of these is NOT an Australian state or territory?",
+      "answers": [
+        "Victoria",
+        "Queensland",
+        "New South Wales",
+        "Alberta"
+      ],
+      "correct_answer": "Alberta",
+      "selected_answer": "",
+      "id": 39
+    },
+    {
+      "category": "History",
+      "difficulty": "hard",
+      "question": "Which countries participated in the Lobster War?",
+      "answers": [
+        "France and Brazil",
+        "United States and England",
+        "Australia and New Zealand",
+        "Canada and Norway"
+      ],
+      "correct_answer": "France and Brazil",
+      "selected_answer": "",
+      "id": 40
+    },
+    {
+      "category": "History",
+      "difficulty": "medium",
+      "question": "Who is attributed credit for recording the epic poem The Odyssey?",
+      "answers": [
+        "Aristotle",
+        "Socrates",
+        "Homer",
+        "Odysseus"
+      ],
+      "correct_answer": "Homer",
+      "selected_answer": "",
+      "id": 41
+    },
+    {
+      "category": "History",
+      "difficulty": "easy",
+      "question": "Which country was Josef Stalin born in?",
+      "answers": [
+        "Russia",
+        "Poland",
+        "Georgia",
+        "Germany"
+      ],
+      "correct_answer": "Georgia",
+      "selected_answer": "",
+      "id": 42
+    },
+    {
+      "category": "Geography",
+      "difficulty": "medium",
+      "question": "All of the following are towns/villages in the Pacific Island nation of Kiribati EXCEPT:",
+      "answers": [
+        "Urutora",
+        "Washington",
+        "London",
+        "Rungata"
+      ],
+      "correct_answer": "Urutora",
+      "selected_answer": "",
+      "id": 43
+    },
+    {
+      "category": "Sports",
+      "difficulty": "hard",
+      "question": "Which year was the third Super Bowl held?",
+      "answers": [
+        "1970",
+        "1968",
+        "1969",
+        "1971"
+      ],
+      "correct_answer": "1969",
+      "selected_answer": "",
+      "id": 44
+    },
+    {
+      "category": "Entertainment: Film",
+      "difficulty": "medium",
+      "question": "What Queen song plays during the final fight scene of the film &quot;Hardcore Henry&quot;?",
+      "answers": [
+        "Another Bites the Dust",
+        "We Will Rock You",
+        "Don&#039;t Stop Me Now",
+        "Brighton Rock"
+      ],
+      "correct_answer": "Don&#039;t Stop Me Now",
+      "selected_answer": "",
+      "id": 45
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "medium",
+      "question": "Without enchantments, which pickaxe in minecraft mines blocks the quickest.",
+      "answers": [
+        "Golden ",
+        "Iron",
+        "Diamond",
+        "Obsidian"
+      ],
+      "correct_answer": "Golden ",
+      "selected_answer": "",
+      "id": 46
+    },
+    {
+      "category": "Mythology",
+      "difficulty": "medium",
+      "question": "What is the name of the first human being in Norse mythology?",
+      "answers": [
+        "Asmund",
+        "Asger",
+        "Ask",
+        "Ake"
+      ],
+      "correct_answer": "Ask",
+      "selected_answer": "",
+      "id": 47
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "difficulty": "easy",
+      "question": "Which of the following is a class in the game &quot;Hearthstone&quot;?",
+      "answers": [
+        "Priest",
+        "Monk",
+        "Sage",
+        "Cleric"
+      ],
+      "correct_answer": "Priest",
+      "selected_answer": "",
+      "id": 48
+    },
+    {
+      "category": "Science &amp; Nature",
+      "difficulty": "hard",
+      "question": "Which of these is a stop codon in DNA?",
+      "answers": [
+        "GTA",
+        "ACA",
+        "TAA",
+        "ACT"
+      ],
+      "correct_answer": "TAA",
+      "selected_answer": "",
+      "id": 49
+    },
+    {
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "difficulty": "medium",
+      "question": "Aoi Miyamori is the production manager of what anime in &quot;Shirobako&quot;?",
+      "answers": [
+        "The Third Aerial Girls Squad",
+        "Andes Chucky",
+        "Angel Beats!",
+        "Exodus!"
+      ],
+      "correct_answer": "The Third Aerial Girls Squad",
+      "selected_answer": "",
+      "id": 50
     }
   ]
 }

@@ -7,7 +7,6 @@ let dbURL = "https://opentdb.com/api.php?";
 const init = () => {
     let form = document.querySelector('#generate-form');
     let generateButton = document.querySelector('#generate-button')
-    let qArr = [];
     let quizCreated = false;
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -18,8 +17,8 @@ const init = () => {
         if(qNum === '' || isNaN(qNum)){
             alert('Please enter a number.')
         }
-        else if(qNum > 100 || qNum <= 0){
-            alert('Please enter a number between 1 and 100.')
+        else if(qNum > 50 || qNum <= 0){
+            alert('Please enter a number between 1 and 50.')
         }
         else{
             //generateButton.disabled = true;
@@ -36,10 +35,6 @@ const init = () => {
             return false;
         }
     });
-    // used for example boxes only
-    //console.log(boxArr);
-    //checkboxListener(boxArr);
-
 }
 
 function buildURL(qNum, difficulty, category) {
