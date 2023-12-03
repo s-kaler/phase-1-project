@@ -187,7 +187,6 @@ function buildDB(qArr){
     })
     Promise.all(promArr).then(res => resolve())
     })
-
 }
 
 function postQ(q){
@@ -262,7 +261,6 @@ function buildQuestionDiv(q, index, generating){
         checkDiv.classList.add('check-box');
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        //checkbox.value = 'Value1';
         checkDiv.appendChild(checkbox);
 
         let ansText = document.createElement('div');
@@ -286,7 +284,6 @@ function buildQuestionDiv(q, index, generating){
             //will add styling to already answered questions
             questionResults(ansArr[i], q)
         }
-        
     }
     //console.log(qDiv);
     return qDiv;
