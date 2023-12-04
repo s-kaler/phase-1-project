@@ -224,7 +224,7 @@ function buildQuestion(q) {
 
 // Fixes any special characters saved in db.json format
 function stringFixer(string){
-    return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'").replace(/&atilde;/, 'ã')
+    return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'").replace(/&atilde;/, 'ã').replace(/&ldquo;/, '“').replace(/&rdquo;/, '”').replace(/&rsquo;/, '’').replace(/&lsquo;/, '‘')
 }
 
 // this function will handle building our question object into an html element
@@ -478,5 +478,4 @@ function handleQuiz(qArr, quizContainer){
         
     })
 }
-
 document.addEventListener("DOMContentLoaded", init);
