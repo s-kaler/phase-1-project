@@ -297,27 +297,52 @@ function selectListener(ansDiv, q){
 
     // event listener for boxes when they are changed
     box.addEventListener('change', (e) =>{
-        //console.log(e.target.checked); 
+        if(e.target.checked){
+            q['selected_answer'] = ansText.textContent;
+            //console.log(q['selected_answer'])
+            boxes.forEach(element => {
+                if(element !== box){
+                    //console.log(element)
+                    element.checked = false;
+                }
+            })
+            answers.forEach(element => {
+                if(element !== ansText){
+                    element.style['background-color'] = "white";
+                }
+                else{
+                    ansText.style['background-color'] = "lightgreen";
+                }
+            })
+        }
+        else{
+            q['selected_answer'] = ''
+            e.target.checked = false;
+            //console.log(q['selected_answer'])
+            ansText.style['background-color'] = "lightyellow";
+        }
+        /*
         boxes.forEach(element => {
             if(element !== box){
                 element.checked = false;
                 element.style['background-color'] = "white";
             }
-        })
-        answers.forEach(element => {
-            if(element !== box){
-                element.checked = false;
-                element.style['background-color'] = "white";
+            answers.forEach(element => {
+                if(element !== box){
+                    element.checked = false;
+                    element.style['background-color'] = "white";
+                }
+            })
+            if(box.checked === true){
+                ansText.style['background-color'] = "lightgreen";
+                q['selected_answer'] = ansText.textContent;
+                //console.log(q['selected_answer']);
+            }
+            else{
+                ansText.style['background-color'] = "white";
             }
         })
-        if(box.checked === true){
-            ansText.style['background-color'] = "lightgreen";
-            q['selected_answer'] = ansText.textContent;
-            //console.log(q['selected_answer']);
-        }
-        else{
-            ansText.style['background-color'] = "white";
-        }
+        */
     })
 
     // event listeners for highlighting and selecting answers by clicking on them
@@ -332,7 +357,7 @@ function selectListener(ansDiv, q){
             ansText.style['background-color'] = "white";
         }
     })
-    ansDiv.addEventListener('click', (e) => {
+    ansText.addEventListener('click', (e) => {
         boxes.forEach(element => {
             if(element !== box){
                 element.checked = false;

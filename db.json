@@ -1,74 +1,18 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Music",
+      "category": "Entertainment: Japanese Anime &amp; Manga",
       "difficulty": "medium",
-      "question": "Which one of these Rammstein songs has two official music videos?",
+      "question": "In the anime, &quot;Super Sonico&quot;, what is Super Sonico&#039;s favorite food?",
       "answers": [
-        "Du Hast",
-        "Benzin",
-        "Du Riechst So Gut",
-        "Mein Teil"
+        "Ice Cream",
+        "Macroons",
+        "Pizza",
+        "Chips"
       ],
-      "correct_answer": "Du Riechst So Gut",
+      "correct_answer": "Macroons",
       "selected_answer": "",
       "id": 1
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "medium",
-      "question": "What is the original name of Final Fantasy XV?",
-      "answers": [
-        "Final Fantasy: Reborn",
-        "Final Fantasy Versus XIII",
-        "Final Fantasy XVI",
-        "Final Fantasy XIII-3"
-      ],
-      "correct_answer": "Final Fantasy Versus XIII",
-      "selected_answer": "",
-      "id": 2
-    },
-    {
-      "category": "Entertainment: Video Games",
-      "difficulty": "medium",
-      "question": "Who is the main villain of the Crash Bandicoot series?",
-      "answers": [
-        "Sir Cartex",
-        "Dr. Cortox",
-        "Dr. Neo Cortex",
-        "Dr. Evo-Cortex"
-      ],
-      "correct_answer": "Dr. Neo Cortex",
-      "selected_answer": "",
-      "id": 3
-    },
-    {
-      "category": "Entertainment: Music",
-      "difficulty": "medium",
-      "question": "Which of these bands are NOT from Australia?",
-      "answers": [
-        "Tame Impala",
-        "Empire of the Sun",
-        "The Naked and Famous",
-        "Cut Copy"
-      ],
-      "correct_answer": "The Naked and Famous",
-      "selected_answer": "",
-      "id": 4
-    },
-    {
-      "category": "Entertainment: Comics",
-      "difficulty": "hard",
-      "question": "Which of the following rings from the DC Comics&#039; &quot;Lantern Corps&quot; are classified as Parasitic?",
-      "answers": [
-        "Yellow (Fear)",
-        "White (Life)",
-        "Green (Willpower)",
-        "Indigo (Compassion)"
-      ],
-      "correct_answer": "Indigo (Compassion)",
-      "selected_answer": "",
-      "id": 5
     }
   ]
 }
