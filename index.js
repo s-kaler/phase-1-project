@@ -1,13 +1,8 @@
-//warning: do not use --watch when running json-server db.json
-
-let quizGenerated = false;
 //we will be generating a quiz with this link and modifiers attached
 let dbURL = "https://opentdb.com/api.php?";
 
 const init = () => {
     let form = document.querySelector('#generate-form');
-    let generateButton = document.querySelector('#generate-button')
-    let quizCreated = false;
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         let qNum = e.target["q-num"].value;
@@ -21,116 +16,57 @@ const init = () => {
             alert('Please enter a number between 1 and 50.')
         }
         else{
-            //generateButton.disabled = true;
-            //let fetchURL = buildURL(qNum, difficulty, category)
-            quizCreated = true;
-            clearDB()
-            .then(() => buildURL(qNum, difficulty, category))
-            .then(fetchURL => handleFetch(fetchURL))
-            .then(qArr => buildDB(qArr))
-            .then(() => buildQuiz(quizCreated))
-            .then((res) => handleQuiz(res[0], res[1]))
-            
+            handleFetch(buildURL(qNum, difficulty, category));
             form.reset();
-            return false;
         }
     });
 }
 
 function buildURL(qNum, difficulty, category) {
-    return new Promise(resolve => {
-        //example db url 
-        //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
-        let qNumURL = `amount=${qNum}`;
-        let diffURL = '';
-        if(difficulty !== 'any'){
-            diffURL = `&difficulty=${difficulty}`;
-        }
-        let catURL = ''
-        if(category !== 'any'){
-            catURL = `&category=${category}`
-        }
-        //final db url will include the amount, difficulty, category, and will be multiple choice by default
-        //if difficulty or category are not chosen, they will be empty in the url
-        //this is what we will use in our fetch
-        let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
-        console.log(newUrl);
-        resolve(newUrl);
-    })
-    
+    //example db url 
+    //https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple
+    let qNumURL = `amount=${qNum}`;
+    let diffURL = '';
+    if(difficulty !== 'any'){
+        diffURL = `&difficulty=${difficulty}`;
+    }
+    let catURL = ''
+    if(category !== 'any'){
+        catURL = `&category=${category}`
+    }
+    //final db url will include the amount, difficulty, category, and will be multiple choice by default
+    //if difficulty or category are not chosen, they will be empty in the url
+    //this is what we will use in our fetch
+    let newUrl = dbURL + qNumURL + diffURL + catURL + '&type=multiple';
+    console.log(newUrl);
+    return newUrl;
 }
 
-// We will be clearing local db.json because we need to throw away possible old question data
-// and fill with new and variable amounts of questions
-function clearDB(){
-    return new Promise(function(resolve) {
-        //let idArr = [];
-        fetch(`http://localhost:3000/questions/`)
-        .then(res => res.json())
-        .then(data => {
-            return new Promise(function(resolve) {
-                // Building an array of ids currently stored in the local db.json server
-                // these are ids that will be set to delete so that we can build add new questions
-                //console.log(data.length); 
-                let newArr = []
-                for(let i = 0; i < data.length; i++)
-                {
-                    newArr.push(data[i].id);
-                }
-                resolve(newArr)
-            })
-        })
-        .then(idArr => {
-            //console.log(idArr);
-            for(let i = 0; i < idArr.length; i++){
-                //console.log('deleted');
-                //console.log(data[i].id)
-                
-                    fetch(`http://localhost:3000/questions/${idArr[i]}`, {
-                    method: 'DELETE',
-                    headers:
-                    {
-                        "Content-Type": "application/json",
-                        Accept: "application/json"
-                    }
-                    })
-                    .catch(error => console.log("could not resolve: " + error))
-                    //console.log(`deleted id:${idArr[i]}`)
-                
-            }
-            resolve("Deleted all items");
-        })
-        //.catch(error => {alert("Local db.json server not running")})
-    })
-    
-}
-
+// fetch url from user generated data, creates a array with new question objects
 function handleFetch(fetchURL){
-    return new Promise(function(resolve) {
-        // if the API is rate limited, it will throw a response code of 5
-        // if not and the quiz is generated, then "response_code" will be 0
-        fetch(fetchURL)
-        .then(res => res.json())
-        .then(data => {    
+    // if the API is rate limited, it will throw a response code of 5
+    // if not and the quiz is generated, then "response_code" will be 0
+    fetch(fetchURL)
+    .then(res => res.json())
+    .then(data => {    
+        //console.log(data);
+        //console.log(data['response_code']);
+        if(data['response_code'] === '5'){
+            alert('Rate limited, please try again');
+        }
+        else if(data['response_code'] === 0){
             //console.log(data);
-            //console.log(data['response_code']);
-            if(data['response_code'] === '5'){
-                alert('Rate limited, please try again');
-            }
-            else if(data['response_code'] === 0){
-                //console.log(data);
-                let fetchArr = data.results;
-                let qArr = [];
-                fetchArr.forEach(fetched => {
-                    qArr.push(buildQuestion(fetched))
-                }) 
-                resolve(qArr);
-            }
-        })
-        
+            let fetchArr = data.results;
+            let qArr = [];
+            fetchArr.forEach(fetched => {
+                qArr.push(buildQuestion(fetched))
+            })
+            buildQuiz(qArr);
+        }
     })
 }
 
+//class for creating new question object with data we retrieved
 class questionObj {
     constructor(category, difficulty, question, answers, correctAnswer){
         this.category = category;
@@ -143,20 +79,6 @@ class questionObj {
     
 }
 
-/* example fetch request question object
-   we will take this data and convert it to an object that is ready for our code
-      "type": "multiple",
-      "difficulty": "hard",
-      "category": "History",p
-      "question": "When did the French Revolution begin?",
-      "correct_answer": "1789",
-      "incorrect_answers": [
-        "1823",
-        "1756",
-        "1799"
-      ]
-    }
-*/
 //creating a function to shuffle the answers so they they will be shown in a random order
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -169,54 +91,13 @@ function shuffle(array) {
     return array;
 }
 
-// Building the local db with data gained from website API in a different format
-// so that we can use it locally in our own db.json and not make extra calls
-function buildDB(qArr){
-    return new Promise (resolve => {
-        //console.log('POST fetchArr:')
-        //console.log(qArr)
-        promArr = [];
-        qArr.forEach((q) => {
-            //console.log(q);
-            promArr.push(postQ(q))
-    })
-    Promise.all(promArr).then(res => resolve())
-    })
-}
-
-function postQ(q){
-    return new Promise(resolve => {
-        fetch(`http://localhost:3000/questions/`, {
-            method: 'POST',
-            headers:
-            {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-            },
-            body: JSON.stringify({
-            "category": q.category,
-            "difficulty": q.difficulty,
-            "question": q.question,
-            "answers": q.answers,
-            "correct_answer": q['correct_answer'],
-            "selected_answer": q['selected_answer']
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            resolve(q)
-        })
-
-    })
-}
-
-// Building a question object that will be used to store onto our local db
+// Building a question object that will be used to interpret our fetched data
 function buildQuestion(q) {
     let answerArr = [];
     answerArr.push(q['correct_answer']);
-    for(let i = 0; i < 3; i++){
-        answerArr.push(q['incorrect_answers'][i]);
-    }
+    q['incorrect_answers'].forEach(incAns => {
+        answerArr.push(incAns)
+    })
     answerArr = shuffle(answerArr);
     let newQ = new questionObj(q.category, q.difficulty, q.question, answerArr, q['correct_answer'])
     return newQ;
@@ -227,9 +108,18 @@ function stringFixer(string){
     return string.replace(/&quot;/g, '\"').replace(/&amp;/g, '&').replace(/&#039;/g, "\'").replace(/&atilde;/, 'ã').replace(/&ldquo;/, '“').replace(/&rdquo;/, '”').replace(/&rsquo;/, '’').replace(/&lsquo;/, '‘')
 }
 
-// this function will handle building our question object into an html element
-// 
+// this function will handle building our question object into an html element that will look something like:
+/*
+    Question: 1
+    Difficulty: Easy
+    Category: Sports
+    [ ] Example Answer 1
+    [✓] Example Answer 2
+    [ ] Example Answer 3
+    [ ] Example Answer 4
+*/
 function buildQuestionDiv(q, index, generating){
+    
     let qDiv = document.createElement('div');
     qDiv.classList.add('question-container');
     let qH4 = document.createElement('h4');
@@ -248,7 +138,7 @@ function buildQuestionDiv(q, index, generating){
     qDiv.appendChild(catH3);
     qDiv.appendChild(qText);
     let ansArr = []
-    for(let i = 0; i < q.answers.length; i++){
+    q.answers.forEach(answer => {
         let ansDiv = document.createElement('div');
         ansDiv.classList.add('answer-container');
 
@@ -260,7 +150,7 @@ function buildQuestionDiv(q, index, generating){
 
         let ansText = document.createElement('div');
         ansText.classList.add('answer-text');
-        ansText.textContent = stringFixer(q.answers[i]);
+        ansText.textContent = stringFixer(answer);
 
         ansDiv.appendChild(checkDiv);
         ansDiv.appendChild(ansText);
@@ -268,18 +158,17 @@ function buildQuestionDiv(q, index, generating){
         qDiv.appendChild(ansDiv);
         // adding each answer container, including checkbox and text to array
         ansArr.push(ansDiv)
-    }
-   
-    for(let i = 0; i < ansArr.length; i++){
+    })
+    ansArr.forEach(ans => {
         if(generating){
             //will add a listener to newly formed questions
-            selectListener(ansArr[i], q)
+            selectListener(ans, q)
         }
         else{
             //will add styling to already answered questions
-            questionResults(ansArr[i], q)
+            questionResults(ans, q)
         }
-    }
+    })
     //console.log(qDiv);
     return qDiv;
 }
@@ -321,28 +210,6 @@ function selectListener(ansDiv, q){
             //console.log(q['selected_answer'])
             ansText.style['background-color'] = "lightyellow";
         }
-        /*
-        boxes.forEach(element => {
-            if(element !== box){
-                element.checked = false;
-                element.style['background-color'] = "white";
-            }
-            answers.forEach(element => {
-                if(element !== box){
-                    element.checked = false;
-                    element.style['background-color'] = "white";
-                }
-            })
-            if(box.checked === true){
-                ansText.style['background-color'] = "lightgreen";
-                q['selected_answer'] = ansText.textContent;
-                //console.log(q['selected_answer']);
-            }
-            else{
-                ansText.style['background-color'] = "white";
-            }
-        })
-        */
     })
 
     // event listeners for highlighting and selecting answers by clicking on them
@@ -380,16 +247,16 @@ function questionResults(ansDiv, q){
     let answers = ansDiv.parentNode.querySelectorAll('.answer-text')
     let selected = stringFixer(q['selected_answer'])
     let correct = selected === stringFixer(q['correct_answer'])
-    for(let i = 0; i < answers.length; i++) {
-        if(answers[i].textContent === stringFixer(q['correct_answer'])){
-            answers[i].style['background-color'] = "lightgreen";
+    answers.forEach((ans, i) => {
+        if(ans.textContent === stringFixer(q['correct_answer'])){
+            ans.style['background-color'] = "lightgreen";
         }
-        if(answers[i].textContent === selected){
+        if(ans.textContent === selected){
             if(correct){
-                answers[i].style['background-color'] = "lightgreen";
+                ans.style['background-color'] = "lightgreen";
             }
             else{
-                answers[i].style['background-color'] = "red";
+                ans.style['background-color'] = "red";
             }
             boxes[i].checked = true;
         }
@@ -397,73 +264,32 @@ function questionResults(ansDiv, q){
             boxes[i].checked = false;
         }
         boxes[i].disabled = true;
-    }
+    })
 }
 
-// We will be creating a local array that will hold all the question data
-// This function will only be pulling data from the db and not changing
-// If needed, can add to this function to by transferring data back and forth,
-// such as saving the selected answer and/or if it was correctly selected
-function buildQuiz(quizCreated){
+// the quiz container is populated with each question div object and and a submit button is added to the end
+function buildQuiz(qArr){
+    let quizContainer = document.getElementById("quiz-container");
+    //building new html block for each question
     
-    return new Promise(resolve => {
-        fetch(`http://localhost:3000/questions`)
-        .then(res => res.json())
-        .then(data => {
-            //console.log(data)
-            return new Promise(function(resolve) {
-                let qArr = [];
-                for(let i = 0; i < data.length; i++)
-                {
-                    qArr.push(data[i]);
-                }
-                //console.log(qArr)
-                resolve(qArr)
-            })
-        })
-        .then(qArr => {
-            let quizContainer = document.getElementById("quiz-container");
-            //building new html block for each question
-            /*
-                Question: 1
-                Difficulty: Easy
-                Category: Sports
-                [ ] Example Answer 1
-                [✓] Example Answer 2
-                [ ] Example Answer 3
-                [ ] Example Answer 4
-                [Previous]      [Next]
-            */
-            if(quizCreated){
-                quizContainer.innerHTML = '';
-            }
-            //console.log("question arr when building:")
-            //console.log(qArr)
-            //let qObjArr = []
-            for(let j = 0; j < qArr.length; j++){
-                //buildQuestionDiv(qArr[j], j)
-                //console.log("each question:")
-                //console.log(qArr[j])
-                quizContainer.appendChild(buildQuestionDiv(qArr[j], j, true));
-            }
-
-            let quizForm = document.createElement('form');
-            quizForm.id = 'submit-quiz'
-            let submitButton = document.createElement('input');
-            submitButton.type = 'submit';
-            submitButton.id = 'submit-button'
-            submitButton.value = 'Submit'
-            quizForm.appendChild(submitButton)
-            quizContainer.appendChild(quizForm)
-            
-            //return promise with array of question objects and the quiz container HTML element
-            resolve([qArr, quizContainer])
-        })
+    quizContainer.innerHTML = '';
+    qArr.forEach((q,i) => {
+        quizContainer.appendChild(buildQuestionDiv(q, i, true));
     })
+    let quizForm = document.createElement('form');
+    quizForm.id = 'submit-quiz'
+    let submitButton = document.createElement('input');
+    submitButton.type = 'submit';
+    submitButton.id = 'submit-button'
+    submitButton.value = 'Submit'
+    quizForm.appendChild(submitButton)
+    quizContainer.appendChild(quizForm)
+    handleQuiz(qArr, quizContainer);
+    //return promise with array of question objects and the quiz container HTML element
     //console.log(quizDiv)
 }
 
-// This function will handle the processing of all answered questions
+// This function will handle the processing of all submitted answers
 function handleQuiz(qArr, quizContainer){
     //console.log(qArr)
     //console.log(quizContainer)
@@ -473,6 +299,7 @@ function handleQuiz(qArr, quizContainer){
     quizForm.addEventListener('submit', (e) => {
         e.preventDefault()
         submitButton.disabled = true;
+        //score will be tallied for each answer matching the correct answer
         qArr.forEach(q => {
             if(q['selected_answer'] === stringFixer(q['correct_answer'])){
                 score++;
@@ -480,27 +307,26 @@ function handleQuiz(qArr, quizContainer){
         });
         //console.log(`score:${score}`);
         //console.log(quizContainer)
-        buildQuiz(qArr, true)
-        .then(() =>{
-            quizContainer.innerHTML = ''
-            let scoreHeader = document.createElement('h4');
-            scoreHeader.id = 'score';
-            scoreHeader.classList.add('score-display')
-            scoreHeader.textContent = `Score: ${score}\/${qArr.length}`;
-            quizContainer.appendChild(scoreHeader)
-            if(score === qArr.length){
-                let congrats = document.createElement('h3')
-                congrats.textContent = 'Congrats, you got a perfect score!'
-                congrats.classList.add('score-display')
-                quizContainer.appendChild(congrats)
-            }
-            
-            for(let j = 0; j < qArr.length; j++){
-                quizContainer.appendChild(buildQuestionDiv(qArr[j], j, false));
-            }
-            //console.log(scoreHeader)
-        })
         
+        //building the quiz questions again, but this time they will be displayed with each question answered
+        quizContainer.innerHTML = ''
+        let scoreHeader = document.createElement('h4');
+        scoreHeader.id = 'score';
+        scoreHeader.classList.add('score-display')
+        scoreHeader.textContent = `Score: ${score}\/${qArr.length}`;
+        quizContainer.appendChild(scoreHeader)
+        if(score === qArr.length){
+            let congrats = document.createElement('h3')
+            congrats.textContent = 'Congrats, you got a perfect score!'
+            congrats.classList.add('score-display')
+            quizContainer.appendChild(congrats)
+        }
+        
+        qArr.forEach((q,i) => {
+            quizContainer.appendChild(buildQuestionDiv(q, i, false));
+        })
+        //console.log(scoreHeader)
     })
 }
+
 document.addEventListener("DOMContentLoaded", init);

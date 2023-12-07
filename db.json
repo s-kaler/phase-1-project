@@ -1,18 +1,32 @@
 {
   "questions": [
     {
-      "category": "Entertainment: Japanese Anime &amp; Manga",
-      "difficulty": "medium",
-      "question": "In the anime, &quot;Super Sonico&quot;, what is Super Sonico&#039;s favorite food?",
+      "category": "Politics",
+      "difficulty": "hard",
+      "question": "Who was the longest-serving senator in US history, serving from 1959 to 2010?",
       "answers": [
-        "Ice Cream",
-        "Macroons",
-        "Pizza",
-        "Chips"
+        "Daniel Inouye",
+        "Strom Thurmond",
+        "Joe Biden",
+        "Robert Byrd"
       ],
-      "correct_answer": "Macroons",
+      "correct_answer": "Robert Byrd",
       "selected_answer": "",
       "id": 1
+    },
+    {
+      "category": "Science &amp; Nature",
+      "difficulty": "medium",
+      "question": "Along with Oxygen, which element is primarily responsible for the sky appearing blue?",
+      "answers": [
+        "Hydrogen",
+        "Carbon",
+        "Helium",
+        "Nitrogen"
+      ],
+      "correct_answer": "Nitrogen",
+      "selected_answer": "",
+      "id": 2
     }
   ]
 }
